@@ -1,0 +1,3698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMASH SUNDAY PINASAYA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --court-blue-deep:#0B2E4A;
+    --court-blue:#123A5E;
+    --court-blue-light:#1B4E7A;
+    --sun-yellow:#FFC93C;
+    --fiesta-coral:#FF6B4A;
+    --line-cream:#F5F1E4;
+    --ink:#0A1B2E;
+    --green-win:#3FBE7A;
+    --line-faint:rgba(245,241,228,0.12);
+    --shadow-hard:0 6px 0 rgba(0,0,0,0.25);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, var(--line-faint) 79px, var(--line-faint) 80px),
+      radial-gradient(ellipse at top left, var(--court-blue-light) 0%, var(--court-blue-deep) 55%),
+      var(--court-blue-deep);
+    color:var(--line-cream);
+    font-family:'Work Sans', sans-serif;
+    min-height:100vh;
+    padding-bottom:60px;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px;}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:44px 20px 34px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:3px solid var(--sun-yellow);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; top:-120px; right:-120px;
+    width:320px;height:320px;border-radius:50%;
+    background:radial-gradient(circle, rgba(255,201,60,0.35) 0%, transparent 70%);
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    letter-spacing:0.35em;
+    font-size:11px;
+    color:var(--sun-yellow);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  h1.title{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size:clamp(34px,7vw,64px);
+    letter-spacing:0.02em;
+    line-height:0.95;
+    margin:0;
+    color:var(--line-cream);
+    text-shadow:3px 3px 0 var(--fiesta-coral);
+  }
+  .title .pinasaya{color:var(--sun-yellow); text-shadow:3px 3px 0 var(--court-blue-deep);}
+  .subtitle{margin-top:14px;font-size:15px;color:rgba(245,241,228,0.75);max-width:520px;margin-left:auto;margin-right:auto;}
+  .rulechips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;}
+  .chip{
+    font-family:'Space Mono',monospace; font-size:11px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--line-faint);
+    padding:6px 12px; border-radius:20px;
+    color:var(--line-cream);
+  }
+
+  /* NET DIVIDER */
+  .net-divider{width:100%;height:18px;margin:0 auto;position:relative;}
+  .net-divider svg{width:100%;height:100%;display:block;}
+
+  section{padding:36px 0;}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
+  .section-title{
+    font-family:'Anton', sans-serif; font-weight:400;
+    font-size:26px; letter-spacing:0.02em; color:var(--sun-yellow);
+    text-transform:uppercase;
+  }
+  .section-sub{font-size:12px;color:rgba(245,241,228,0.6);font-family:'Space Mono',monospace;}
+
+  /* CARDS */
+  .card{
+    background:rgba(255,255,255,0.045);
+    border:1px solid var(--line-faint);
+    border-radius:14px;
+    padding:20px;
+  }
+  .btn{
+    font-family:'Work Sans',sans-serif; font-weight:700; font-size:14px;
+    border:none; border-radius:10px; padding:12px 22px; cursor:pointer;
+    background:var(--sun-yellow); color:var(--ink);
+    box-shadow:var(--shadow-hard);
+    transition:transform .12s cubic-bezier(.2,.8,.2,1), box-shadow .12s ease, filter .12s ease;
+  }
+  .btn:hover:not(:disabled){ transform:translateY(-2px); filter:brightness(1.08); box-shadow:0 8px 0 rgba(0,0,0,0.25); }
+  .btn:active{transform:translateY(4px); box-shadow:0 2px 0 rgba(0,0,0,0.25);}
+  .btn.secondary{background:transparent; color:var(--line-cream); border:1.5px solid var(--line-cream); box-shadow:none;}
+  .btn.secondary:hover:not(:disabled){ background:rgba(255,201,60,0.1); border-color:var(--sun-yellow); box-shadow:none; transform:translateY(-1px); }
+  .btn.coral{background:var(--fiesta-coral); color:#fff;}
+  .btn.small{padding:7px 12px; font-size:12px; border-radius:8px; box-shadow:none;}
+  .btn.small:hover:not(:disabled){ box-shadow:none; }
+  .btn:disabled{opacity:0.4; cursor:not-allowed;}
+  .card{ transition:box-shadow .2s ease, border-color .2s ease; }
+  .card:hover{ box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+  #appContent{ animation: appFadeIn .4s ease-out; }
+  #queuingScreen{ animation: appFadeIn .4s ease-out; }
+  @keyframes appFadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  /* SETUP */
+  .teams-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(270px,1fr)); gap:16px;}
+  .team-card{border-top:4px solid; border-radius:14px;}
+  .team-card.A{border-color:var(--sun-yellow);}
+  .team-card.B{border-color:var(--fiesta-coral);}
+  .team-card.C{border-color:#5FC9E0;}
+  .team-name-input{
+    width:100%; background:transparent; border:none; border-bottom:2px dashed var(--line-faint);
+    font-family:'Anton',sans-serif; font-size:20px; color:var(--line-cream); padding:6px 2px 10px;
+    margin-bottom:12px; letter-spacing:0.02em;
+  }
+  .team-name-input:focus{outline:none; border-bottom-color:var(--sun-yellow);}
+  .player-row{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+  .player-row .pnum{font-family:'Space Mono',monospace; font-size:11px; color:rgba(245,241,228,0.5); width:16px;}
+  .player-row input[type=text]{
+    flex:1; background:rgba(255,255,255,0.06); border:1px solid var(--line-faint); border-radius:8px;
+    padding:8px 10px; color:var(--line-cream); font-size:13px; font-family:'Work Sans',sans-serif;
+  }
+  .player-row input[type=text]:focus{outline:none; border-color:var(--sun-yellow);}
+
+  .setup-controls{display:flex; flex-wrap:wrap; gap:22px; align-items:center; margin-top:22px;}
+  .control-group label{display:block; font-size:11px; font-family:'Space Mono',monospace; color:rgba(245,241,228,0.6); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.08em;}
+  .control-group select, .control-group input[type=time], .control-group input[type=text]{
+    background:rgba(255,255,255,0.07); border:1px solid var(--line-faint); border-radius:8px;
+    color:var(--line-cream); padding:8px 10px; font-family:'Work Sans',sans-serif; font-size:13px;
+  }
+  #setupError{color:var(--fiesta-coral); font-size:13px; margin-top:10px; font-weight:600; display:none;}
+
+  /* SCHEDULE */
+  .round-block{margin-bottom:22px;}
+  .round-label{
+    font-family:'Space Mono',monospace; font-size:12px; color:var(--sun-yellow);
+    text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; display:flex; align-items:center; gap:10px;
+  }
+  .round-label .line{flex:1; height:1px; background:var(--line-faint);}
+  .games-row{display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:12px;}
+  .game-card{
+    background:rgba(255,255,255,0.045); border:1px solid var(--line-faint); border-radius:12px; padding:14px 16px;
+    position:relative;
+  }
+  .game-card.done{border-color:var(--green-win); background:rgba(63,190,122,0.07);}
+  .game-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .matchup-badge{
+    font-family:'Anton',sans-serif; font-size:14px; letter-spacing:0.04em;
+    background:rgba(255,255,255,0.08); padding:3px 10px; border-radius:6px;
+  }
+  .court-tag{font-family:'Space Mono',monospace; font-size:11px; color:rgba(245,241,228,0.55);}
+  .court-number-badge{
+    font-family:'Anton',sans-serif; font-size:12px; letter-spacing:0.02em;
+    color:var(--ink); background:var(--sun-yellow);
+    padding:4px 10px; border-radius:20px; white-space:nowrap;
+  }
+  .undo-match-btn:hover{opacity:1 !important;}
+  .status-badge{
+    display:inline-flex; align-items:center; gap:5px; font-family:'Space Mono',monospace;
+    font-size:10px; text-transform:uppercase; letter-spacing:0.06em; padding:3px 8px; border-radius:20px;
+    cursor:pointer; user-select:none; border:1px solid transparent;
+  }
+  .status-badge.upcoming{color:rgba(245,241,228,0.55); background:rgba(255,255,255,0.06);}
+  .status-badge.live{color:#fff; background:var(--fiesta-coral); border-color:var(--fiesta-coral);}
+  .status-badge.done{color:var(--ink); background:var(--green-win); cursor:default;}
+  .status-badge .dot{width:6px; height:6px; border-radius:50%; background:currentColor;}
+  .status-badge.live .dot{animation:pulseDot 1.1s ease-in-out infinite;}
+  @keyframes pulseDot{0%,100%{opacity:1;} 50%{opacity:0.25;}}
+  .game-card.live{border-color:var(--fiesta-coral); box-shadow:0 0 0 1px var(--fiesta-coral);}
+  .player-search-bar{
+    display:flex; align-items:center; gap:10px; margin-bottom:16px; flex-wrap:wrap;
+  }
+  .player-search-bar input{
+    flex:1; min-width:220px; background:rgba(255,255,255,0.06); border:1px solid var(--line-faint);
+    border-radius:10px; padding:10px 14px; color:var(--line-cream); font-size:13px; font-family:'Work Sans',sans-serif;
+  }
+  .player-search-bar input:focus{outline:none; border-color:var(--sun-yellow);}
+  .player-search-count{font-family:'Space Mono',monospace; font-size:12px; color:var(--sun-yellow); white-space:nowrap;}
+  .game-card.search-match{border-color:var(--sun-yellow); box-shadow:0 0 0 2px var(--sun-yellow);}
+  .game-card.search-dim{opacity:0.3;}
+  .game-card.flash-highlight{ animation: flashHighlight 2.5s ease; }
+  @keyframes flashHighlight{
+    0%{ box-shadow:0 0 0 3px var(--sun-yellow); background:rgba(255,201,60,0.18); }
+    100%{ box-shadow:none; background:rgba(255,255,255,0.045); }
+  }
+  .side{display:flex; justify-content:space-between; align-items:center; margin:6px 0; gap:8px;}
+  .side-team-label{
+    font-family:'Space Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.06em;
+    font-weight:700; margin-top:6px; margin-bottom:-2px;
+  }
+  .side .players{font-size:13px; line-height:1.5;}
+  .side .players .pname{cursor:pointer; border-bottom:1px dotted rgba(245,241,228,0.4);}
+  .side .players .pname.no-swap{cursor:default; border-bottom:1px dotted transparent;}
+  .side .players .pname:hover{color:var(--sun-yellow);}
+  .skilldots-inline{font-size:10px; color:rgba(245,241,228,0.4); margin-left:4px; font-family:'Space Mono',monospace;}
+  .score-input{
+    width:44px; background:rgba(0,0,0,0.25); border:1px solid var(--line-faint); border-radius:6px;
+    color:var(--line-cream); font-family:'Space Mono',monospace; text-align:center; padding:6px 2px; font-size:14px;
+  }
+  .vs-label{font-family:'Space Mono',monospace; font-size:10px; color:rgba(245,241,228,0.4); text-align:center; margin:2px 0;}
+  .game-actions{display:flex; justify-content:space-between; align-items:flex-start; margin-top:10px; gap:8px; flex-wrap:wrap;}
+  .swap-picker{
+    position:absolute; z-index:5; background:var(--court-blue-deep); border:1px solid var(--sun-yellow);
+    border-radius:8px; padding:8px; top:36px; right:10px; min-width:220px; max-height:260px; overflow-y:auto;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  }
+  .swap-picker div.opt{padding:6px 8px; font-size:12px; cursor:pointer; border-radius:5px; display:flex; justify-content:space-between; align-items:center; gap:8px; font-family:'Space Mono',monospace;}
+  .swap-picker div.opt:hover{background:rgba(255,201,60,0.15);}
+  .swap-picker .close-x{position:absolute; top:2px; right:6px; cursor:pointer; font-size:12px; color:rgba(245,241,228,0.5);}
+
+  /* STANDINGS */
+  .battles{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:14px; margin-bottom:20px;}
+  .battle-card{border-radius:14px;}
+  .battle-title{font-family:'Anton',sans-serif; font-size:15px; letter-spacing:0.03em; margin-bottom:10px; color:var(--sun-yellow);}
+  .battle-score{display:flex; justify-content:space-between; align-items:center;}
+  .battle-score .num{font-family:'Anton',sans-serif; font-size:34px;}
+  .battle-score .team{font-size:12px; opacity:0.8;}
+  .battle-score .win .num{color:var(--green-win);}
+  .progress-bar{height:6px; border-radius:3px; background:rgba(255,255,255,0.08); margin-top:10px; overflow:hidden; display:flex;}
+  .progress-bar .fillx{background:var(--sun-yellow); height:100%;}
+  .progress-bar .filly{background:var(--fiesta-coral); height:100%;}
+
+  table.standings{width:100%; border-collapse:collapse; margin-top:6px;}
+  table.standings th{
+    text-align:left; font-family:'Space Mono',monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.06em; color:rgba(245,241,228,0.55); padding:8px 10px; border-bottom:1px solid var(--line-faint);
+  }
+  table.standings td{padding:12px 10px; border-bottom:1px solid var(--line-faint); font-size:14px;}
+  table.standings tr.leader td{color:var(--sun-yellow); font-weight:700;}
+  .rank-badge{
+    display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px;
+    border-radius:50%; background:rgba(255,255,255,0.08); font-family:'Space Mono',monospace; font-size:12px;
+  }
+
+  .champion-banner{
+    text-align:center; padding:40px 20px; border-radius:18px; position:relative; overflow:hidden;
+    background:radial-gradient(circle at center, rgba(255,201,60,0.25) 0%, transparent 70%), rgba(255,255,255,0.05);
+    border:2px solid var(--sun-yellow);
+    animation: championPopIn .5s cubic-bezier(.2,.9,.3,1.3) both;
+  }
+  @keyframes championPopIn{ from{opacity:0; transform:scale(.9);} to{opacity:1; transform:scale(1);} }
+  .champion-banner .cup{font-size:52px; display:inline-block; animation: cupBounce 1.6s ease-in-out infinite;}
+  @keyframes cupBounce{ 0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-8px) rotate(-6deg);} }
+  .champion-banner h2{font-family:'Anton',sans-serif; font-size:clamp(28px,6vw,48px); color:var(--sun-yellow); margin:8px 0 4px; text-transform:uppercase;}
+  .champion-banner p{color:rgba(245,241,228,0.7); font-size:13px; font-family:'Space Mono',monospace;}
+  .confetti-piece{
+    position:absolute; top:-10px; width:8px; height:14px; opacity:0.9;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall{
+    0%{ transform:translateY(0) rotate(0deg); opacity:1; }
+    100%{ transform:translateY(320px) rotate(540deg); opacity:0; }
+  }
+
+  /* SWAP TRACKER */
+  .swap-tracker{display:flex; gap:14px; flex-wrap:wrap;}
+  .swap-pill{
+    display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.05); border:1px solid var(--line-faint);
+    padding:10px 14px; border-radius:10px; font-size:13px;
+  }
+  .swap-pill b{color:var(--sun-yellow); font-family:'Space Mono',monospace;}
+
+  .footer-actions{display:flex; justify-content:center; gap:14px; margin-top:30px; padding-bottom:10px;}
+  .hidden{display:none !important;}
+  .save-note{font-size:11px; color:rgba(245,241,228,0.45); font-family:'Space Mono',monospace; margin-top:6px; text-align:center;}
+  .back-to-intro{
+    position:fixed; bottom:20px; right:20px; z-index:20;
+    display:flex; align-items:center; gap:6px;
+    background:var(--sun-yellow); color:var(--ink); font-family:'Work Sans',sans-serif; font-weight:700;
+    font-size:13px; padding:10px 16px; border-radius:30px; border:none; cursor:pointer;
+    box-shadow:0 6px 16px rgba(0,0,0,0.35); text-decoration:none;
+  }
+  .back-to-intro:active{transform:translateY(2px);}
+  .quick-nav-menu{
+    position:fixed; bottom:70px; right:20px; z-index:21;
+    background:var(--court-blue-deep); border:1.5px solid var(--sun-yellow); border-radius:14px;
+    padding:8px; box-shadow:0 12px 30px rgba(0,0,0,0.45); display:flex; flex-direction:column; gap:4px;
+    min-width:200px;
+  }
+  .quick-nav-menu button{
+    display:flex; align-items:center; gap:10px; text-align:left; background:transparent; border:none;
+    color:var(--line-cream); font-family:'Work Sans',sans-serif; font-size:13px; padding:9px 10px;
+    border-radius:8px; cursor:pointer;
+  }
+  .quick-nav-menu button:hover{background:rgba(255,201,60,0.12);}
+  .welcome-screen{
+    position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:40px 20px; overflow:hidden;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,201,60,0.16) 0%, transparent 40%),
+      radial-gradient(circle at 85% 75%, rgba(255,107,74,0.14) 0%, transparent 45%),
+      radial-gradient(ellipse at top left, var(--court-blue-light) 0%, var(--court-blue-deep) 55%),
+      var(--court-blue-deep);
+    background-size: 200% 200%, 200% 200%, 100% 100%, 100% 100%;
+    animation: meshDrift 14s ease-in-out infinite;
+  }
+  @keyframes meshDrift{
+    0%,100%{ background-position: 0% 0%, 100% 100%, 0 0, 0 0; }
+    50%{ background-position: 30% 40%, 70% 60%, 0 0, 0 0; }
+  }
+  .welcome-screen::before, .welcome-screen::after{
+    content:"🏸"; position:absolute; font-size:34px; opacity:0.16; pointer-events:none;
+    animation: shuttleFloat 9s ease-in-out infinite;
+  }
+  .welcome-screen::before{ top:12%; left:8%; animation-delay:0s; }
+  .welcome-screen::after{ bottom:14%; right:10%; animation-delay:3.2s; transform:rotate(140deg); }
+  @keyframes shuttleFloat{
+    0%,100%{ transform:translateY(0) rotate(-12deg); }
+    50%{ transform:translateY(-26px) rotate(8deg); }
+  }
+  .welcome-court-lines{
+    position:absolute; inset:0; pointer-events:none; opacity:0.05;
+    background-image:
+      linear-gradient(var(--line-cream) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-cream) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .welcome-eyebrow{
+    font-family:'Space Mono', monospace; letter-spacing:0.35em; font-size:12px; color:var(--sun-yellow);
+    text-transform:uppercase; margin-bottom:14px; position:relative;
+    animation: fadeSlideDown .7s ease-out both;
+  }
+  .welcome-title{
+    font-family:'Anton', sans-serif; font-weight:400; font-size:clamp(30px,8vw,58px);
+    line-height:1.05; margin:0 0 44px; position:relative;
+    text-shadow:3px 3px 0 var(--fiesta-coral), 0 0 40px rgba(255,201,60,0.25);
+    animation: fadeSlideUp .8s .1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes fadeSlideDown{ from{opacity:0; transform:translateY(-14px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes fadeSlideUp{ from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+  .welcome-options{
+    display:flex; flex-wrap:wrap; gap:22px; justify-content:center; max-width:620px; position:relative;
+    animation: fadeSlideUp .8s .3s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .welcome-option-card{
+    background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
+    backdrop-filter: blur(6px);
+    border:2px solid var(--line-faint); border-radius:20px;
+    padding:36px 28px; width:230px; cursor:pointer; position:relative; overflow:hidden;
+    transition:border-color .2s ease, transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s ease;
+    display:flex; flex-direction:column; align-items:center; gap:12px;
+    box-shadow:0 10px 24px rgba(0,0,0,0.25);
+  }
+  .welcome-option-card::before{
+    content:""; position:absolute; inset:0; border-radius:20px; padding:2px;
+    background:linear-gradient(135deg, var(--sun-yellow), var(--fiesta-coral), var(--sun-yellow));
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:0; transition:opacity .25s ease;
+  }
+  .welcome-option-card:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(255,201,60,0.2);
+  }
+  .welcome-option-card:hover::before{ opacity:1; }
+  .welcome-option-card:active{transform:translateY(-3px) scale(1.0);}
+  .welcome-option-icon{font-size:42px; transition:transform .25s cubic-bezier(.2,.8,.2,1);}
+  .welcome-option-card:hover .welcome-option-icon{ transform:scale(1.18) rotate(-6deg); }
+  .welcome-option-label{font-family:'Anton', sans-serif; font-size:19px; letter-spacing:0.02em;}
+  .welcome-option-sub{font-size:12px; color:rgba(245,241,228,0.6); line-height:1.4;}
+  .welcome-back-btn{
+    position:fixed; top:16px; left:16px; z-index:20;
+    background:rgba(255,255,255,0.08); border:1px solid var(--line-faint); color:var(--line-cream);
+    font-family:'Work Sans',sans-serif; font-size:13px; padding:8px 14px; border-radius:8px; cursor:pointer;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .welcome-back-btn:hover{ background:rgba(255,201,60,0.15); transform:translateX(-2px); }
+  .toast{
+    position:fixed; top:20px; left:50%; transform:translateX(-50%); z-index:30;
+    background:var(--court-blue-deep); border:1.5px solid var(--sun-yellow); color:var(--line-cream);
+    padding:12px 20px; border-radius:12px; font-size:13px; font-weight:600; box-shadow:0 10px 26px rgba(0,0,0,0.45);
+    display:flex; align-items:center; gap:10px; max-width:90vw; text-align:left;
+    animation:toastIn .2s ease-out;
+  }
+  @keyframes toastIn{ from{opacity:0; transform:translate(-50%,-10px);} to{opacity:1; transform:translate(-50%,0);} }
+  .challenge-icon{font-family:'Space Mono',monospace; font-size:11px; padding:3px 8px; border-radius:20px;}
+  .challenge-icon.available{background:rgba(255,201,60,0.18); color:var(--sun-yellow);}
+  .challenge-icon.used{background:rgba(255,255,255,0.06); color:rgba(245,241,228,0.4);}
+  .confirm-overlay{
+    position:fixed; inset:0; z-index:40; background:rgba(0,0,0,0.55);
+    display:flex; align-items:center; justify-content:center; padding:20px;
+  }
+  .confirm-box{
+    background:var(--court-blue-deep); border:1.5px solid var(--sun-yellow); border-radius:14px;
+    padding:22px; max-width:380px; box-shadow:0 16px 40px rgba(0,0,0,0.5);
+  }
+  .confirm-box p{font-size:14px; line-height:1.5; margin:0 0 18px;}
+  .confirm-box .confirm-actions{display:flex; gap:10px; justify-content:flex-end;}
+  ::selection{background:var(--sun-yellow); color:var(--ink);}
+  .team-collapsible{
+    background:rgba(255,255,255,0.045); border:1px solid var(--line-faint); border-radius:14px;
+    margin-bottom:12px; overflow:hidden;
+  }
+  .team-collapsible summary{
+    list-style:none; cursor:pointer; padding:14px 18px; display:flex; align-items:center;
+    justify-content:space-between; font-family:'Anton',sans-serif; font-size:16px; letter-spacing:0.02em;
+  }
+  .team-collapsible summary::-webkit-details-marker{display:none;}
+  .team-collapsible summary .chevron{transition:transform .15s ease; font-family:'Space Mono',monospace; font-size:13px; opacity:0.6;}
+  .team-collapsible[open] summary .chevron{transform:rotate(90deg);}
+  .win-row{
+    display:flex; justify-content:space-between; align-items:center; padding:9px 18px;
+    border-top:1px solid var(--line-faint); font-size:13px;
+  }
+  .win-row .pname-label{display:flex; align-items:center; gap:8px;}
+  .win-row .wins-count{font-family:'Space Mono',monospace; font-weight:700;}
+  .win-bar-track{height:5px; width:70px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden;}
+  .win-bar-fill{height:100%; background:var(--sun-yellow);}
+</style>
+</head>
+<body>
+
+<div id="welcomeScreen" class="welcome-screen">
+  <div class="welcome-court-lines"></div>
+  <div class="welcome-eyebrow">Welcome to</div>
+  <h1 class="welcome-title">SMASH SUNDAY<br><span style="color:var(--sun-yellow); text-shadow:3px 3px 0 var(--court-blue-deep);">PINASAYA</span></h1>
+  <div class="welcome-options">
+    <div class="welcome-option-card" id="welcomeTournamentBtn">
+      <span class="welcome-option-icon">🏆</span>
+      <span class="welcome-option-label">Tournament</span>
+      <span class="welcome-option-sub">Rainy Day Tournament — full schedule, standings, and live scoring</span>
+    </div>
+    <div class="welcome-option-card" id="welcomeQueuingBtn">
+      <span class="welcome-option-icon">📋</span>
+      <span class="welcome-option-label">Queuing</span>
+      <span class="welcome-option-sub">Every Sunday queue for open court time</span>
+    </div>
+  </div>
+</div>
+
+<div id="roleScreen" class="welcome-screen" style="display:none;">
+  <button class="welcome-back-btn" id="roleBackBtn">🏠 Home</button>
+  <div class="welcome-court-lines"></div>
+  <div class="welcome-eyebrow">Rainy Day Tournament</div>
+  <h1 class="welcome-title" style="font-size:clamp(24px,6vw,40px);">How are you joining?</h1>
+
+  <div id="roleChoiceStep">
+    <div class="welcome-options">
+      <div class="welcome-option-card" id="roleAdminBtn">
+        <span class="welcome-option-icon">🔓</span>
+        <span class="welcome-option-label">Admin</span>
+        <span class="welcome-option-sub">Organizer — needs the passcode. Can save scores, edit setup, and manage the tournament.</span>
+      </div>
+      <div class="welcome-option-card" id="roleTeamPlayerBtn">
+        <span class="welcome-option-icon">👑</span>
+        <span class="welcome-option-label">Team Captain</span>
+        <span class="welcome-option-sub">Needs the Captain passcode. Submit your team's roster, watch live, use swaps and challenges for your team.</span>
+      </div>
+      <div class="welcome-option-card" id="roleSimpleTeamBtn">
+        <span class="welcome-option-icon">👤</span>
+        <span class="welcome-option-label">Team Player</span>
+        <span class="welcome-option-sub">No password needed. Just watch live, get notified when your team wins, use swaps and challenges.</span>
+      </div>
+    </div>
+    <div style="margin-top:22px;">
+      <button class="btn secondary" id="roleSkipBtn">Just watching — skip this</button>
+    </div>
+  </div>
+
+  <div id="roleAdminStep" style="display:none; max-width:340px; width:100%;">
+    <div class="card" style="text-align:left;">
+      <div class="section-sub" style="margin-bottom:10px;">Enter the admin passcode set when the tournament was created.</div>
+      <input type="text" id="roleAdminPasscodeInput" placeholder="Passcode" autocomplete="off"
+        style="width:100%; background:rgba(255,255,255,0.06); border:1px solid var(--line-faint); border-radius:8px; padding:10px 12px; color:var(--line-cream); font-size:14px; margin-bottom:12px;">
+      <div id="roleAdminError" style="color:var(--fiesta-coral); font-size:12px; margin-bottom:10px; display:none;">Incorrect passcode.</div>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn secondary small" id="roleAdminBackBtn">← Back</button>
+        <button class="btn small" id="roleAdminSubmitBtn">Log In</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="roleCaptainPasscodeStep" style="display:none; max-width:340px; width:100%;">
+    <div class="card" style="text-align:left;">
+      <div class="section-sub" style="margin-bottom:10px;">Enter the Team Captain passcode to submit your team's roster and use swaps/challenges.</div>
+      <input type="text" id="roleCaptainPasscodeInput" placeholder="Passcode" autocomplete="off"
+        style="width:100%; background:rgba(255,255,255,0.06); border:1px solid var(--line-faint); border-radius:8px; padding:10px 12px; color:var(--line-cream); font-size:14px; margin-bottom:12px;">
+      <div id="roleCaptainError" style="color:var(--fiesta-coral); font-size:12px; margin-bottom:10px; display:none;">Incorrect passcode.</div>
+      <div style="display:flex; gap:10px; justify-content:flex-end;">
+        <button class="btn secondary small" id="roleCaptainBackBtn">← Back</button>
+        <button class="btn small" id="roleCaptainSubmitBtn">Log In</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="roleTeamStep" style="display:none; max-width:340px; width:100%;">
+    <div class="card" style="text-align:left;">
+      <div class="section-sub" style="margin-bottom:12px;">Pick your team to get notified when they win, and to use swaps/challenges for them.</div>
+      <div id="roleTeamOptions" style="display:flex; flex-direction:column; gap:8px;"></div>
+      <div style="display:flex; justify-content:flex-start; margin-top:14px;">
+        <button class="btn secondary small" id="roleTeamBackBtn">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="roleTeamRosterStep" style="display:none; max-width:400px; width:100%;">
+    <div class="card" style="text-align:left;">
+      <div class="section-sub" style="margin-bottom:4px;" id="roleRosterPrompt"></div>
+      <div class="section-sub" style="margin-bottom:14px; opacity:0.6;">Changes save automatically and sync live — anyone on your team can edit this list.</div>
+      <div id="roleTeamRosterFields"></div>
+      <div style="display:flex; justify-content:space-between; margin-top:16px; gap:10px; flex-wrap:wrap;">
+        <button class="btn secondary small" id="roleRosterBackBtn">← Back</button>
+        <span style="display:flex; gap:10px;">
+          <button class="btn secondary small" id="roleRosterContinueBtn">Just Browse</button>
+          <button class="btn small" id="roleRosterSubmitBtn">✅ Submit Final List</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="roleWaitingStep" style="display:none; max-width:400px; width:100%;">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:38px; margin-bottom:8px;">✅</div>
+      <div style="font-family:'Anton',sans-serif; font-size:20px; color:var(--sun-yellow); margin-bottom:6px;" id="roleWaitingTitle"></div>
+      <div class="section-sub" style="margin-bottom:16px;" id="roleWaitingSub">Waiting for other teams to submit their final list...</div>
+      <div id="roleWaitingStatusList" style="text-align:left; margin-bottom:16px;"></div>
+      <div style="display:flex; justify-content:space-between; gap:10px;">
+        <button class="btn secondary small" id="roleWaitingEditBtn">✏️ Edit my list again</button>
+        <button class="btn small" id="roleWaitingBrowseBtn">Browse Tournament</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="appContent" style="display:none;">
+<button class="welcome-back-btn" id="welcomeBackBtn">🏠 Home</button>
+
+<div class="hero" id="introHero">
+  <div class="eyebrow">Rainy Day Tournament</div>
+  <h1 class="title">SMASH SUNDAY<br><span class="pinasaya">PINASAYA</span></h1>
+  <p class="subtitle">3 teams. Full round-robin battles. Skill-balanced doubles, power swaps, and one champion standing when the last shuttle drops.</p>
+  <div class="rulechips">
+    <div class="chip">Flexible team size</div>
+    <div class="chip">Doubles</div>
+    <div class="chip">25 min / game</div>
+    <div class="chip">4+ games / player</div>
+    <div class="chip">A·B / B·C / C·A</div>
+    <div class="chip">Full round-robin battle</div>
+  </div>
+</div>
+
+<div class="net-divider">
+  <svg viewBox="0 0 1000 18" preserveAspectRatio="none">
+    <line x1="0" y1="2" x2="1000" y2="2" stroke="#F5F1E4" stroke-width="2" opacity="0.5"/>
+    <g stroke="#F5F1E4" stroke-width="1" opacity="0.25">
+      <line x1="0" y1="2" x2="0" y2="18"/><line x1="40" y1="2" x2="40" y2="18"/><line x1="80" y1="2" x2="80" y2="18"/>
+      <line x1="120" y1="2" x2="120" y2="18"/><line x1="160" y1="2" x2="160" y2="18"/><line x1="200" y1="2" x2="200" y2="18"/>
+      <line x1="240" y1="2" x2="240" y2="18"/><line x1="280" y1="2" x2="280" y2="18"/><line x1="320" y1="2" x2="320" y2="18"/>
+      <line x1="360" y1="2" x2="360" y2="18"/><line x1="400" y1="2" x2="400" y2="18"/><line x1="440" y1="2" x2="440" y2="18"/>
+      <line x1="480" y1="2" x2="480" y2="18"/><line x1="520" y1="2" x2="520" y2="18"/><line x1="560" y1="2" x2="560" y2="18"/>
+      <line x1="600" y1="2" x2="600" y2="18"/><line x1="640" y1="2" x2="640" y2="18"/><line x1="680" y1="2" x2="680" y2="18"/>
+      <line x1="720" y1="2" x2="720" y2="18"/><line x1="760" y1="2" x2="760" y2="18"/><line x1="800" y1="2" x2="800" y2="18"/>
+      <line x1="840" y1="2" x2="840" y2="18"/><line x1="880" y1="2" x2="880" y2="18"/><line x1="920" y1="2" x2="920" y2="18"/>
+      <line x1="960" y1="2" x2="960" y2="18"/><line x1="1000" y1="2" x2="1000" y2="18"/>
+    </g>
+  </svg>
+</div>
+
+<div class="wrap">
+
+  <div id="teamIdentityBar" class="card" style="display:none; align-items:center; margin-top:10px; padding:10px 18px;">
+    <span style="font-size:13px;" id="teamIdentityLabel"></span>
+  </div>
+
+  <div id="saveStatus" class="hidden" style="margin-top:18px; background:rgba(255,107,74,0.15); border:1px solid var(--fiesta-coral); color:var(--line-cream); padding:12px 16px; border-radius:10px; font-size:13px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;"></div>
+
+  <!-- SETUP -->
+  <section id="setupSection">
+    <div id="setupNonAdminNotice" class="card" style="display:none; margin-bottom:16px; text-align:center; border-color:var(--sun-yellow);">
+      <div style="font-size:15px; margin-bottom:6px;">🔒 No tournament has been set up yet</div>
+      <div class="section-sub">Only Admin can create and generate the schedule, so everyone sees the exact same tournament. If you're the organizer, go to Home → Tournament → Admin to log in.</div>
+    </div>
+    <div id="setupAdminContent">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Team Setup</div>
+        <div class="section-sub" id="setupSub">List each team from most to least skilled — Player 1 is the strongest</div>
+      </div>
+      <span style="display:flex; align-items:center; gap:10px;">
+        <button class="btn secondary small" id="fillTentativeBtn">Fill Tentative Names</button>
+        <div id="loadingTag" class="chip">loading saved data…</div>
+      </span>
+    </div>
+
+    <div class="teams-grid" id="teamsGrid"></div>
+
+    <div class="card" style="margin-top:18px;">
+      <div class="setup-controls">
+        <div class="control-group">
+          <label>Players per team</label>
+          <select id="teamSizeSelect">
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10" selected>10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Courts running at once</label>
+          <select id="courtsSelect">
+            <option value="1">1 court — most rest between games</option>
+            <option value="2" selected>2 courts — balanced</option>
+            <option value="3">3 courts — fast, tighter rotation</option>
+            <option value="4">4 courts — fastest, least rest between games</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Start time</label>
+          <input type="time" id="startTime" value="17:30">
+        </div>
+        <div class="control-group">
+          <label>Power swaps per team</label>
+          <select id="swapsSelect">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label>Admin passcode</label>
+          <input type="text" id="adminPasscodeInput" placeholder="e.g. PINASAYA" value="PINASAYA">
+        </div>
+        <div class="control-group">
+          <label>Team Captain passcode</label>
+          <input type="text" id="captainPasscodeInput" placeholder="e.g. SMASH" value="SMASH">
+        </div>
+        <div style="flex:1;"></div>
+        <button class="btn" id="generateBtn">Generate Schedule ⚡</button>
+      </div>
+      <div id="setupError"></div>
+    </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="scheduleSection" class="hidden">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Match Schedule</div>
+        <div class="section-sub" id="scheduleSub"></div>
+      </div>
+      <button class="btn secondary small" id="editSetupBtn">Edit Setup</button>
+    </div>
+    <div class="player-search-bar">
+      <input type="text" id="playerSearchInput" placeholder="Search a player's name to highlight their games…">
+      <span id="playerSearchCount" class="player-search-count"></span>
+      <button class="btn small secondary" id="playerSearchClearBtn" style="display:none;">✕ Clear</button>
+    </div>
+    <div id="gameFilterBanner" class="hidden" style="display:none; align-items:center; justify-content:space-between; gap:10px; background:rgba(255,201,60,0.14); border:1px solid var(--sun-yellow); border-radius:10px; padding:10px 16px; margin-bottom:14px;">
+      <span id="gameFilterText" style="font-size:13px; color:var(--sun-yellow); font-weight:600;"></span>
+      <button class="btn small secondary" id="gameFilterClearBtn">✕ Show Full Schedule</button>
+    </div>
+    <div id="scheduleContainer"></div>
+  </section>
+
+  <!-- STANDINGS -->
+  <section id="standingsSection" class="hidden">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Team Battles</div>
+        <div class="section-sub">Best team wins the battle · 1 point for the win, 0.5 each on a tie, 0 for the loss</div>
+      </div>
+    </div>
+    <div class="battles" id="battlesContainer"></div>
+
+    <div class="card">
+      <table class="standings" id="standingsTable">
+        <thead>
+          <tr><th>Rank</th><th>Team</th><th>Battle Pts</th><th>Games Won</th><th>Points Scored</th></tr>
+        </thead>
+        <tbody id="standingsBody"></tbody>
+      </table>
+    </div>
+
+    <div id="championWrap" style="margin-top:20px;"></div>
+  </section>
+
+  <!-- PLAYER WINS -->
+  <section id="leaderboardSection" class="hidden">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Player Wins</div>
+        <div class="section-sub">Tap a team to expand — individual win counts across all their games</div>
+      </div>
+    </div>
+    <div id="leaderboardContainer"></div>
+  </section>
+
+  <!-- POWER SWAPS -->
+  <section id="swapSection" class="hidden">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Power Plays</div>
+        <div class="section-sub">Two team powers: swap a player mid-schedule, or challenge a loss for a rematch. Only your team's Captain (or Admin) can use either — logged-in Team Players can watch but not act.</div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:16px;">
+      <div style="font-family:'Anton',sans-serif; font-size:16px; color:var(--sun-yellow); letter-spacing:0.02em; margin-bottom:6px;">⚡ Power Swaps</div>
+      <div class="section-sub" style="margin-bottom:10px;">Click any player's name on a pending game to swap them with a teammate's pending game — Final games can't be touched.</div>
+      <div class="swap-tracker" id="swapTracker"></div>
+    </div>
+
+    <div class="card">
+      <div style="font-family:'Anton',sans-serif; font-size:16px; color:var(--sun-yellow); letter-spacing:0.02em; margin-bottom:6px;">🔄 Rematch Challenge</div>
+      <div class="section-sub" style="margin-bottom:10px;">Each team gets one for the whole tournament, usable only when they lose a game.</div>
+      <div class="swap-tracker" id="challengeTracker"></div>
+    </div>
+  </section>
+
+  <div class="footer-actions">
+    <button class="btn" id="adminSaveBtn" style="display:none;">💾 Save Changes</button>
+    <button class="btn coral" id="resetBtn">Reset Tournament</button>
+  </div>
+
+  <div style="max-width:640px; margin:16px auto 0;">
+    <details class="team-collapsible">
+      <summary>
+        <span style="color:var(--sun-yellow);">ℹ️ How Matches Are Generated</span>
+        <span class="chevron">▶</span>
+      </summary>
+      <div style="padding:14px 18px; font-size:13px; line-height:1.7; color:rgba(245,241,228,0.85);">
+        <p><b style="color:var(--sun-yellow);">Skill tiers, not manual ratings.</b> Each player's ⚡ number comes purely from where they're listed in Team Setup — Player 1 is the strongest, the last player is the weakest. With 10 players per team, that roster splits into 5 tiers of 2 people each: positions 1–2 are tier 5, 3–4 are tier 4, 5–6 are tier 3, 7–8 are tier 2, and 9–10 are tier 1. No one has to guess a rating — just list your team from best to worst.</p>
+        <p><b style="color:var(--sun-yellow);">Every game is exactly balanced.</b> The two doubles pairs in any game are guaranteed to have the same combined tier total (e.g. 9 vs 9, 7 vs 7) — every single time, by construction. Since both teams share the same tier makeup, whatever total one team's pair adds up to, the opponent is mathematically guaranteed to have players available to match it exactly.</p>
+        <p><b style="color:var(--sun-yellow);">Composition still varies.</b> Which two teammates get paired together, and which specific opponents they face, is randomized fresh every time you generate — so it's not the same predictable "strongest with weakest" pattern every week, even though the balance stays perfect.</p>
+        <p><b style="color:var(--sun-yellow);">Everyone plays fairly.</b> Each player gets exactly 4 games (2 against each opposing team), never repeats a partner within the same matchup, and the scheduler actively spreads each team's games evenly across early, middle, and late rounds — so no team is stuck playing all its matches in the first few rounds while another coasts in late.</p>
+      </div>
+    </details>
+  </div>
+
+  <div id="activityLogWrap" style="display:none; max-width:640px; margin:14px auto 0;">
+    <details class="team-collapsible">
+      <summary>
+        <span style="color:var(--sun-yellow);">📋 Admin Activity Log</span>
+        <span style="display:flex; align-items:center; gap:10px;">
+          <span class="court-tag" id="activityLogCount" style="font-family:'Space Mono',monospace;"></span>
+          <span class="chevron">▶</span>
+        </span>
+      </summary>
+      <div id="activityLogList"></div>
+    </details>
+  </div>
+
+  <div id="localBackupWrap" style="display:none; max-width:520px; margin:14px auto 0;">
+    <details class="team-collapsible">
+      <summary>
+        <span style="color:var(--sun-yellow);">🕒 Local Backup History</span>
+        <span style="display:flex; align-items:center; gap:10px;">
+          <span class="court-tag" id="localBackupCount" style="font-family:'Space Mono',monospace;"></span>
+          <span class="chevron">▶</span>
+        </span>
+      </summary>
+      <div id="localBackupList"></div>
+    </details>
+  </div>
+  <div class="save-note">Data is shared in real time via Firebase — everyone who opens this app sees the same roster, schedule, and scores instantly. Local backup history is session-only and won't survive a page reload.</div>
+</div>
+
+<script>
+const TEAM_KEYS = ['A','B','C'];
+const TEAM_ACCENT = {A:'var(--sun-yellow)', B:'var(--fiesta-coral)', C:'#5FC9E0'};
+const TEAM_RGB = {A:'255,201,60', B:'255,107,74', C:'95,201,224'}; // matches TEAM_ACCENT, as raw r,g,b for use in rgba()
+// Firebase Realtime Database — replaces window.storage so this works when hosted outside
+// Claude.ai (e.g. GitHub Pages), where window.storage does not exist.
+const FIREBASE_URL = 'https://tournament-ssp-default-rtdb.asia-southeast1.firebasedatabase.app';
+const DB_PATH = 'smashSundayPinasaya';
+const DB_ENDPOINT = `${FIREBASE_URL}/${DB_PATH}.json`;
+// Shared draft roster (before the schedule is generated) — anyone (admin or a team player who
+// picked their team) can edit any name here, and it syncs live to everyone else editing it too.
+const DRAFT_ROSTER_ENDPOINT = `${FIREBASE_URL}/smashSundayDraftRoster.json`;
+let draftRosterLastWritten = null;
+let draftRosterSaveTimer = null;
+let draftRosterSubmitted = { A: false, B: false, C: false };
+
+function draftRosterSnapshot(){
+  const out = { submitted: draftRosterSubmitted };
+  TEAM_KEYS.forEach(k=>{ out[k] = draftConfig[k]; });
+  return out;
+}
+function saveDraftRosterDebounced(){
+  clearTimeout(draftRosterSaveTimer);
+  draftRosterSaveTimer = setTimeout(async ()=>{
+    try{
+      const body = JSON.stringify(draftRosterSnapshot());
+      const res = await fetch(DRAFT_ROSTER_ENDPOINT, { method:'PUT', body });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      draftRosterLastWritten = body;
+    }catch(e){ console.error('draft roster save failed', e); }
+  }, 500);
+}
+async function saveDraftRosterNow(){
+  try{
+    const body = JSON.stringify(draftRosterSnapshot());
+    const res = await fetch(DRAFT_ROSTER_ENDPOINT, { method:'PUT', body });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    draftRosterLastWritten = body;
+    return true;
+  }catch(e){
+    console.error('draft roster save failed', e);
+    return false;
+  }
+}
+function applyDraftRosterData(data){
+  TEAM_KEYS.forEach(k=>{ if(data[k]) draftConfig[k] = data[k]; });
+  draftRosterSubmitted = data.submitted || { A: false, B: false, C: false };
+  TEAM_KEYS.forEach(k=>{ if(draftRosterSubmitted[k] === undefined) draftRosterSubmitted[k] = false; });
+}
+async function loadDraftRoster(){
+  try{
+    const res = await fetch(DRAFT_ROSTER_ENDPOINT);
+    if(res.ok){
+      const data = await res.json();
+      if(data){
+        applyDraftRosterData(data);
+        renderTeamsGrid();
+        renderTeamRosterStep();
+        renderWaitingStep();
+      } else {
+        // nothing saved yet — publish our current default as the shared baseline
+        const body = JSON.stringify(draftRosterSnapshot());
+        fetch(DRAFT_ROSTER_ENDPOINT, { method:'PUT', body }).then(()=>{ draftRosterLastWritten = body; }).catch(()=>{});
+      }
+    }
+  }catch(e){ console.error('draft roster load failed', e); }
+}
+function anyDraftInputFocused(){
+  const el = document.activeElement;
+  return !!(el && (el.closest('#teamsGrid') || el.closest('#roleTeamRosterFields')));
+}
+let draftRosterEventSource = null;
+function startDraftRosterSync(){
+  if(draftRosterEventSource) return;
+  try{
+    draftRosterEventSource = new EventSource(DRAFT_ROSTER_ENDPOINT);
+    draftRosterEventSource.addEventListener('put', (e)=>{
+      try{
+        const payload = JSON.parse(e.data);
+        if(payload.path !== '/' || !payload.data) return;
+        const remoteStr = JSON.stringify(payload.data);
+        if(remoteStr === draftRosterLastWritten) return;
+        if(!anyDraftInputFocused()){
+          applyDraftRosterData(payload.data);
+          renderTeamsGrid();
+          renderTeamRosterStep();
+        } else {
+          // still update submission status even mid-typing, since that doesn't touch the focused field
+          draftRosterSubmitted = payload.data.submitted || draftRosterSubmitted;
+        }
+        renderWaitingStep();
+      }catch(err){ console.error('draft roster realtime parse error', err); }
+    });
+  }catch(e){ console.error('could not start draft roster sync', e); }
+}
+
+let state = null; // {config, schedule, swaps}
+let openSwapPickerId = null;
+let isAdmin = false; // unlocked per device with the admin passcode; persisted to sessionStorage so a refresh doesn't log you out
+let myTeamKey = null; // which team this viewer wants win notifications for, no password needed; persisted to sessionStorage
+let isCaptain = false; // only a logged-in Captain (or Admin) can use swaps/challenges for their team; persisted to sessionStorage
+
+// Role persists for the browser tab's lifetime (cleared when the tab/browser closes), so a refresh,
+// dropped wifi, or phone screen lock doesn't force the Admin/Captain to re-enter the passcode mid-event.
+const ROLE_SESSION_KEY = 'sspRole';
+function saveSessionRole(){
+  try{
+    sessionStorage.setItem(ROLE_SESSION_KEY, JSON.stringify({ isAdmin, isCaptain, myTeamKey }));
+  }catch(e){ /* sessionStorage unavailable (e.g. private browsing) — role just won't survive a refresh */ }
+}
+function restoreSessionRole(){
+  try{
+    const raw = sessionStorage.getItem(ROLE_SESSION_KEY);
+    if(!raw) return false;
+    const saved = JSON.parse(raw);
+    isAdmin = !!saved.isAdmin;
+    isCaptain = !!saved.isCaptain;
+    myTeamKey = saved.myTeamKey || null;
+    return isAdmin || isCaptain || !!myTeamKey;
+  }catch(e){ return false; }
+}
+function clearSessionRole(){
+  try{ sessionStorage.removeItem(ROLE_SESSION_KEY); }catch(e){}
+}
+
+/* ---------------- persistence (Firebase Realtime Database) ---------------- */
+let lastWrittenSnapshot = null; // used to avoid double-notifying the person who just made a change
+let lastKnownRev = null; // the tournament revision number we last confirmed matches the server (see writeStateToServer)
+
+async function loadState(){
+  let lastErr = null;
+  for(let attempt=0; attempt<3; attempt++){
+    try{
+      const res = await fetch(DB_ENDPOINT);
+      if(!res.ok) throw new Error('HTTP '+res.status);
+      const data = await res.json();
+      if(data){ state = data; }
+      lastKnownRev = (data && typeof data.rev === 'number') ? data.rev : null;
+      lastErr = null;
+      break;
+    }catch(e){
+      lastErr = e;
+      if(attempt<2) await new Promise(r=>setTimeout(r, 500*(attempt+1)));
+    }
+  }
+  document.getElementById('loadingTag').style.display = 'none';
+  if(lastErr && !state){
+    const statusEl = document.getElementById('saveStatus');
+    statusEl.classList.remove('hidden');
+    statusEl.dataset.owner = 'save';
+    statusEl.innerHTML = `⚠️ Couldn't reach the database — check your internet connection, or the database may be temporarily unavailable. If a tournament already exists, reloading should recover it instead of starting a new one.
+      <button id="retryLoadBtn" class="btn small secondary">Retry Load</button>`;
+    document.getElementById('retryLoadBtn').addEventListener('click', ()=>loadState());
+  }
+  render();
+}
+// In-memory local backup history. Session-only — protects against a failed save or accidental
+// overwrite mid-session, not a page reload (this app cannot use localStorage/sessionStorage).
+let localBackupHistory = []; // [{time, snapshot}], most recent first, capped at 8
+
+let autoRetryTimer = null;
+let autoRetryAttempt = 0;
+
+// Writes the whole tournament object to the server, but first checks a lightweight revision
+// counter to make sure nobody else has saved a newer version since we last synced. This app
+// always writes the FULL object (not a per-field patch), so without this check, two people
+// scoring different courts at the same moment could silently overwrite each other's changes —
+// whoever's write lands last would win, with no error shown to either person.
+//
+// Returns 'ok', 'conflict' (someone else saved first — caller should not overwrite), or throws on network error.
+async function writeStateToServer(){
+  if(state && lastKnownRev != null){
+    try{
+      const revRes = await fetch(`${FIREBASE_URL}/${DB_PATH}/rev.json`);
+      if(revRes.ok){
+        const serverRev = await revRes.json();
+        if(serverRev != null && serverRev !== lastKnownRev) return 'conflict';
+      }
+      // if the rev check itself fails (offline, etc.), fall through and just attempt the write —
+      // better to try than to block every save on a flaky secondary request.
+    }catch(e){ /* ignore — fall through to the write below */ }
+  }
+  state.rev = (typeof state.rev === 'number' ? state.rev : 0) + 1;
+  const body = JSON.stringify(state);
+  const res = await fetch(DB_ENDPOINT, { method:'PUT', body });
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  lastWrittenSnapshot = body;
+  lastKnownRev = state.rev;
+  localBackupHistory.unshift({ time: Date.now(), snapshot: body });
+  if(localBackupHistory.length > 8) localBackupHistory.length = 8;
+  updateLocalBackupUI();
+  return 'ok';
+}
+
+// Someone else saved a newer version than what we have — reload their version rather than
+// blindly overwriting it. The local action that triggered this save is lost and must be redone
+// on top of the fresh state; that's the safer trade-off vs. silently discarding their change instead.
+async function handleSaveConflict(){
+  const statusEl = document.getElementById('saveStatus');
+  if(statusEl){
+    statusEl.classList.remove('hidden');
+    statusEl.dataset.owner = 'save';
+    statusEl.innerHTML = `⚠️ Someone else just saved a change here at the same time — reloading their update so nothing gets lost. Please redo your last action.
+      <button id="conflictReloadBtn" class="btn small secondary">Reload Now</button>`;
+    const btn = document.getElementById('conflictReloadBtn');
+    if(btn) btn.addEventListener('click', ()=>loadState());
+  }
+  showToast('⚠️ Someone else saved at the same moment — reloaded the latest version. Please redo your last change.', '⚠️');
+  await loadState();
+}
+
+async function saveState(){
+  const statusEl = document.getElementById('saveStatus');
+  for(let attempt=0; attempt<3; attempt++){
+    try{
+      const result = await writeStateToServer();
+      if(result === 'conflict'){
+        await handleSaveConflict();
+        return false;
+      }
+      if(statusEl && statusEl.dataset.owner === 'save'){ statusEl.classList.add('hidden'); delete statusEl.dataset.owner; }
+      if(autoRetryTimer){ clearInterval(autoRetryTimer); autoRetryTimer = null; autoRetryAttempt = 0; }
+      return true;
+    }catch(e){
+      console.error('save failed (attempt '+(attempt+1)+')', e);
+      if(attempt<2) await new Promise(r=>setTimeout(r, 700*(attempt+1)));
+    }
+  }
+  if(statusEl){
+    statusEl.classList.remove('hidden');
+    statusEl.dataset.owner = 'save';
+    statusEl.innerHTML = `⚠️ Couldn't save your last change — retrying automatically in the background until it goes through.
+      <button id="retrySaveBtn" class="btn small secondary">Retry Now</button>`;
+    document.getElementById('retrySaveBtn').addEventListener('click', ()=>saveState());
+  }
+  startAutoRetry();
+  updateLocalBackupUI();
+  return false;
+}
+
+function startAutoRetry(){
+  if(autoRetryTimer) return; // already running, don't stack multiple loops
+  autoRetryAttempt = 0;
+  autoRetryTimer = setInterval(async ()=>{
+    autoRetryAttempt++;
+    try{
+      const result = await writeStateToServer();
+      if(result === 'conflict'){
+        clearInterval(autoRetryTimer);
+        autoRetryTimer = null;
+        await handleSaveConflict();
+        return;
+      }
+      clearInterval(autoRetryTimer);
+      autoRetryTimer = null;
+      const statusEl = document.getElementById('saveStatus');
+      if(statusEl && statusEl.dataset.owner === 'save'){ statusEl.classList.add('hidden'); delete statusEl.dataset.owner; }
+      showToast('Your change just synced — everyone will see it right away.', '✅');
+    }catch(e){
+      const statusEl = document.getElementById('saveStatus');
+      if(autoRetryAttempt >= 20){
+        // stop after ~2 minutes of automatic retrying; leave a manual option instead of retrying forever
+        clearInterval(autoRetryTimer);
+        autoRetryTimer = null;
+        if(statusEl){
+          statusEl.classList.remove('hidden');
+          statusEl.dataset.owner = 'save';
+          statusEl.innerHTML = `⚠️ Still failing after repeated attempts — the database may be temporarily unreachable. Your change is safe on this screen; try again shortly.
+            <button id="retrySaveBtn" class="btn small secondary">Retry Save</button>`;
+          document.getElementById('retrySaveBtn').addEventListener('click', ()=>saveState());
+        }
+      } else if(statusEl && statusEl.dataset.owner === 'save'){
+        statusEl.classList.remove('hidden');
+        statusEl.innerHTML = `⚠️ Still couldn't save (auto-retry ${autoRetryAttempt}/20) — trying again every few seconds in the background.
+          <button id="retrySaveBtn" class="btn small secondary">Retry Now</button>`;
+        const btn = document.getElementById('retrySaveBtn');
+        if(btn) btn.addEventListener('click', ()=>saveState());
+      }
+    }
+  }, 6000);
+}
+
+/* ---------------- setup form ---------------- */
+function defaultConfig(size){
+  const n = size || 10;
+  const mk = (letter) => ({
+    name: `Team ${letter}`,
+    players: Array.from({length:n}, (_,i)=>({name:''}))
+  });
+  const cfg = {};
+  TEAM_KEYS.forEach(l=>{ cfg[l] = mk(l); });
+  return cfg;
+}
+
+// Pre-filled roster provided for this tournament, split evenly in order given
+// (order sets skill rank within each team — first name listed is strongest).
+const PRESET_NAMES = ['Kharl','Cha','Jess','Kurt','Regie','Eli','Anton','Bing','Mon','Cary',
+  'Von','Prince','Al','Gerone','Yno','Dobi','Rogie','Grey','Jimmie Kit','Renz',
+  'Imz','Jeffrey','JJ','Bj','Basty','Miel','MJ','Bong','Candace','Kim Mandie'];
+function presetConfig(){
+  const cfg = defaultConfig(10);
+  TEAM_KEYS.forEach((key, ti)=>{
+    const chunk = PRESET_NAMES.slice(ti*10, ti*10+10);
+    cfg[key].players.forEach((p,i)=>{ p.name = chunk[i] || ''; });
+  });
+  return cfg;
+}
+let draftConfig = presetConfig();
+
+function resizeDraftTeams(newSize){
+  TEAM_KEYS.forEach(key=>{
+    const players = draftConfig[key].players;
+    if(newSize > players.length){
+      while(players.length < newSize) players.push({name:''});
+    } else if(newSize < players.length){
+      players.length = newSize;
+    }
+  });
+  document.getElementById('setupSub').textContent = `List ${newSize} players per team, most to least skilled — Player 1 is the strongest`;
+  renderTeamsGrid();
+  saveDraftRosterDebounced();
+}
+document.getElementById('teamSizeSelect').addEventListener('change', (e)=>{
+  resizeDraftTeams(parseInt(e.target.value, 10));
+});
+
+function renderTeamsGrid(){
+  const grid = document.getElementById('teamsGrid');
+  grid.innerHTML = '';
+  TEAM_KEYS.forEach(key=>{
+    const team = draftConfig[key];
+    const card = document.createElement('div');
+    card.className = `card team-card ${key}`;
+    const nameInput = document.createElement('input');
+    nameInput.className = 'team-name-input';
+    nameInput.value = team.name;
+    nameInput.addEventListener('input', e=>{ team.name = e.target.value; saveDraftRosterDebounced(); });
+    card.appendChild(nameInput);
+
+    team.players.forEach((p, idx)=>{
+      const row = document.createElement('div');
+      row.className = 'player-row';
+      const rankTag = idx===0 ? ' style="color:var(--sun-yellow); font-weight:700;"' : (idx===team.players.length-1 ? ' style="opacity:0.5;"' : '');
+      row.innerHTML = `<span class="pnum"${rankTag}>${idx+1}</span>`;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = idx===0 ? `Player ${idx+1} name (strongest)` : (idx===team.players.length-1 ? `Player ${idx+1} name (weakest)` : `Player ${idx+1} name`);
+      input.value = p.name;
+      if(p.name.includes('(tentative)')){ input.style.borderStyle = 'dashed'; input.style.borderColor = 'var(--fiesta-coral)'; }
+      input.addEventListener('input', e=>{
+        p.name = e.target.value;
+        input.style.borderStyle = p.name.includes('(tentative)') ? 'dashed' : 'solid';
+        input.style.borderColor = p.name.includes('(tentative)') ? 'var(--fiesta-coral)' : 'var(--line-faint)';
+        saveDraftRosterDebounced();
+      });
+      row.appendChild(input);
+      card.appendChild(row);
+    });
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById('fillTentativeBtn').addEventListener('click', ()=>{
+  let filled = 0;
+  TEAM_KEYS.forEach(key=>{
+    const team = draftConfig[key];
+    let guestNum = 1;
+    team.players.forEach(p=>{
+      if(!p.name.trim()){
+        p.name = `Guest ${guestNum} (tentative)`;
+        guestNum++;
+        filled++;
+      }
+    });
+  });
+  renderTeamsGrid();
+  saveDraftRosterDebounced();
+  if(filled === 0){
+    showToast('Every roster spot already has a name — nothing to fill.', '👍');
+  } else {
+    showToast(`Filled ${filled} empty spot${filled===1?'':'s'} with tentative names — swap in real names before or after generating.`, '📝');
+  }
+});
+
+function doGenerateSchedule(){
+  const courts = parseInt(document.getElementById('courtsSelect').value, 10);
+  const startTime = document.getElementById('startTime').value || '09:00';
+  const swapsPerTeam = parseInt(document.getElementById('swapsSelect').value, 10);
+  const adminPasscode = (document.getElementById('adminPasscodeInput').value || 'PINASAYA').trim();
+  const captainPasscode = (document.getElementById('captainPasscodeInput').value || 'SMASH').trim();
+
+  const config = JSON.parse(JSON.stringify(draftConfig));
+  const teamKeysSnapshot = [...TEAM_KEYS];
+  const schedule = buildFullSchedule(config, courts, startTime, teamKeysSnapshot);
+  const swaps = {cap: swapsPerTeam};
+  teamKeysSnapshot.forEach(k=>{ swaps[k] = swapsPerTeam; });
+  const challenges = {cap: 1};
+  teamKeysSnapshot.forEach(k=>{ challenges[k] = 1; });
+
+  state = { config, courts, startTime, schedule, swaps, challenges, adminPasscode, captainPasscode, swappedPlayers: [], createdAt: Date.now() };
+  // This is a deliberate, confirmed overwrite of whatever tournament (if any) previously existed,
+  // so skip the usual "someone else saved first" conflict check for this one save.
+  lastKnownRev = null;
+  championSoundPlayedThisSession = false;
+  saveState();
+  fetch(DRAFT_ROSTER_ENDPOINT, { method:'DELETE' }).catch(()=>{});
+  playScheduleReadySound();
+  showToast('🎉 Schedule generated! Everyone will see the matches within a few seconds.', '🎉');
+  render();
+}
+
+document.getElementById('generateBtn').addEventListener('click', ()=>{
+  if(!isAdmin){ alert('Only Admin can generate the schedule, so everyone shares the same one tournament. Go to Home → Tournament → Admin to log in.'); return; }
+  const errEl = document.getElementById('setupError');
+  errEl.style.display = 'none';
+  // validate
+  for(const key of TEAM_KEYS){
+    const team = draftConfig[key];
+    for(const p of team.players){
+      if(!p.name.trim()){
+        errEl.textContent = `${team.name}: please fill in all ${team.players.length} player names before generating.`;
+        errEl.style.display = 'block';
+        return;
+      }
+    }
+  }
+
+  if(state){
+    // Generating again would silently replace the entire current tournament — including any
+    // scores, live games, swaps, and rematches already played — with no way to undo it. Confirm first.
+    const hasProgress = !!(state.schedule && state.schedule.some(r => r.games.some(g => g.scoreX!=null || g.scoreY!=null || g.live)));
+    const warning = hasProgress
+      ? '⚠️ A tournament is already running with scores and/or live games in progress. Generating a new schedule will permanently erase ALL current scores, swaps, and rematches for everyone — this cannot be undone. Continue?'
+      : 'A tournament already exists. Generating a new schedule will replace it for everyone. Continue?';
+    showConfirmDialog(warning, doGenerateSchedule);
+  } else {
+    doGenerateSchedule();
+  }
+});
+
+document.getElementById('editSetupBtn').addEventListener('click', ()=>{
+  if(!isAdmin){ alert('Admin login required to edit setup. Use the Admin Login button at the top.'); return; }
+  if(state && state.config){
+    draftConfig = JSON.parse(JSON.stringify(state.config));
+    const size = draftConfig[TEAM_KEYS[0]].players.length;
+    document.getElementById('teamSizeSelect').value = size;
+    document.getElementById('setupSub').textContent = `List ${size} players per team, most to least skilled — Player 1 is the strongest`;
+    document.getElementById('courtsSelect').value = state.courts;
+    document.getElementById('startTime').value = state.startTime;
+    document.getElementById('swapsSelect').value = state.swaps.cap;
+    document.getElementById('adminPasscodeInput').value = state.adminPasscode || 'PINASAYA';
+    document.getElementById('captainPasscodeInput').value = state.captainPasscode || 'SMASH';
+    renderTeamsGrid();
+  }
+  document.getElementById('setupSection').classList.remove('hidden');
+  document.getElementById('scheduleSection').classList.add('hidden');
+  document.getElementById('standingsSection').classList.add('hidden');
+  document.getElementById('leaderboardSection').classList.add('hidden');
+  document.getElementById('swapSection').classList.add('hidden');
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+document.getElementById('adminSaveBtn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('adminSaveBtn');
+  const originalText = btn.textContent;
+  btn.textContent = 'Saving…';
+  btn.disabled = true;
+  const ok = await saveState();
+  btn.disabled = false;
+  btn.textContent = originalText;
+  if(ok){ showToast('All changes saved.', '💾'); }
+  else { alert('Save failed — the storage service returned an error. Try the Retry Save button in the banner above, or try again in a moment.'); }
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  if(state && !isAdmin){ alert('Admin login required to reset the tournament. Use the Admin Login button at the top.'); return; }
+  showConfirmDialog('This clears the entire tournament (roster, schedule, and all scores) for everyone. Continue?', async ()=>{
+    state = null;
+    lastKnownRev = null;
+    isAdmin = false;
+    clearSessionRole();
+    localBackupHistory = [];
+    renderAdminBar();
+    await fetch(DB_ENDPOINT, { method:'DELETE' }).catch(()=>{});
+    draftConfig = presetConfig();
+    saveDraftRosterDebounced();
+    document.getElementById('teamSizeSelect').value = 10;
+    document.getElementById('setupSub').textContent = 'List each team from most to least skilled — Player 1 is the strongest';
+    renderTeamsGrid();
+    render();
+  });
+});
+
+/* ---------------- admin login ---------------- */
+function renderAdminBar(){
+  const icon = document.getElementById('adminStatusIcon');
+  const text = document.getElementById('adminStatusText');
+  const btn = document.getElementById('adminToggleBtn');
+  if(icon && text && btn){
+    if(isAdmin){
+      icon.textContent = '🔓';
+      text.textContent = 'Admin mode — full control unlocked';
+      btn.textContent = 'Log Out';
+    } else {
+      icon.textContent = '👤';
+      text.textContent = 'Team Captain — open access, no password needed';
+      btn.textContent = 'Admin Login';
+    }
+  }
+  updateSetupAdminGate();
+}
+
+function updateSetupAdminGate(){
+  const notice = document.getElementById('setupNonAdminNotice');
+  const genBtn = document.getElementById('generateBtn');
+  const adminContent = document.getElementById('setupAdminContent');
+  if(!notice || !genBtn) return;
+  if(!state){
+    notice.style.display = isAdmin ? 'none' : '';
+    genBtn.style.display = isAdmin ? '' : 'none';
+    if(adminContent) adminContent.style.display = isAdmin ? '' : 'none';
+  } else {
+    notice.style.display = 'none';
+    genBtn.style.display = '';
+    if(adminContent) adminContent.style.display = '';
+  }
+}
+
+function renderTeamIdentityBar(){
+  const bar = document.getElementById('teamIdentityBar');
+  const label = document.getElementById('teamIdentityLabel');
+  if(!bar || !label) return;
+  if(!state || !myTeamKey){ bar.style.display = 'none'; return; }
+  const teamKeys = Object.keys(state.config);
+  if(!teamKeys.includes(myTeamKey)){ myTeamKey = null; bar.style.display = 'none'; return; }
+
+  const { teamStats } = computeStandings();
+  const ranked = teamKeys.map(k=>({key:k, ...teamStats[k]}))
+    .sort((a,b)=> b.battlePts-a.battlePts || b.gamesWon-a.gamesWon || b.pointsScored-a.pointsScored);
+  const rankIdx = ranked.findIndex(r=>r.key===myTeamKey);
+  const ordinal = ['1st','2nd','3rd','4th','5th','6th'][rankIdx] || `${rankIdx+1}th`;
+  const myStats = teamStats[myTeamKey];
+  bar.style.display = 'flex';
+  label.textContent = `🔔 You are under ${teamLabel(myTeamKey)} — win total standing is ${ordinal} (${myStats.gamesWon} games won)`;
+}
+
+const adminToggleBtnEl = document.getElementById('adminToggleBtn');
+if(adminToggleBtnEl){
+  adminToggleBtnEl.addEventListener('click', ()=>{
+    if(isAdmin){
+      isAdmin = false;
+      saveSessionRole();
+      renderAdminBar();
+      render();
+      return;
+    }
+    const expected = (state && state.adminPasscode) || 'PINASAYA';
+    const entered = prompt('Enter the admin passcode:');
+    if(entered === null) return;
+    if(entered.trim() === expected){
+      isAdmin = true;
+      saveSessionRole();
+    } else {
+      alert('Incorrect passcode.');
+    }
+    renderAdminBar();
+    render();
+  });
+}
+
+/* ---------------- scheduling engine ---------------- */
+function pairSkill(pair){ return pair[0].skill + pair[1].skill; }
+
+// Skill is derived from roster order in tiers (like a 1-5 star scale), not a unique rank per player,
+// so ties exist and pairings can be matched by exact sum without forcing identical composition.
+function skillTier(idx, size, tiers){
+  const t = Math.min(tiers || 5, size);
+  const bucket = Math.floor(idx * t / size);
+  return t - bucket; // idx 0 (roster position 1) => highest tier
+}
+
+function randomPerfectMatching(n){
+  const idxs = Array.from({length:n}, (_,i)=>i);
+  for(let i=idxs.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [idxs[i],idxs[j]] = [idxs[j],idxs[i]];
+  }
+  const pairs = [];
+  for(let i=0;i<n;i+=2) pairs.push([idxs[i], idxs[i+1]]);
+  return pairs;
+}
+function idxPairKey(a,b){ return a<b ? `${a}-${b}` : `${b}-${a}`; }
+function shuffleArr(arr){
+  const a = [...arr];
+  for(let i=a.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]] = [a[j],a[i]]; }
+  return a;
+}
+
+// Builds a matching for a team that exactly follows a given (tierA, tierB) recipe per pair —
+// this guarantees the resulting pair sums match the recipe's sums exactly, by construction,
+// not by random search. avoidSet blocks specific index-pairs (already-used partnerships).
+function buildMatchingFromRecipe(size, recipe, avoidSet, maxAttempts){
+  for(let attempt=0; attempt<(maxAttempts||300); attempt++){
+    const pools = {};
+    for(let idx=0; idx<size; idx++){
+      const t = skillTier(idx, size);
+      (pools[t] = pools[t] || []).push(idx);
+    }
+    Object.keys(pools).forEach(k=>{ pools[k] = shuffleArr(pools[k]); });
+    const pairs = [];
+    let ok = true;
+    for(const [ta,tb] of recipe){
+      if(!pools[ta] || !pools[ta].length || !pools[tb] || !pools[tb].length){ ok=false; break; }
+      const idxA = pools[ta].pop();
+      const idxB = pools[tb].pop();
+      if(idxA===undefined || idxB===undefined || idxA===idxB){ ok=false; break; }
+      if(avoidSet && avoidSet.has(idxPairKey(idxA,idxB))){ ok=false; break; }
+      pairs.push([idxA, idxB]);
+    }
+    if(ok && pairs.length === recipe.length) return pairs;
+  }
+  return null;
+}
+
+function genOneRound(teamX, teamY, avoidX, avoidY){
+  const n = teamX.length;
+  const tierX = teamX.map(p=>p.skill), tierY = teamY.map(p=>p.skill);
+  let xm = null;
+  for(let i=0;i<500 && !xm;i++){
+    const cand = randomPerfectMatching(n);
+    if(avoidX && cand.some(([a,b])=>avoidX.has(idxPairKey(a,b)))) continue;
+    xm = cand;
+  }
+  if(!xm) xm = randomPerfectMatching(n); // extremely small teams: fall back to any matching
+
+  // Team Y's tier distribution is identical to X's (same size, same formula), so a matching
+  // that exactly follows X's tier-value recipe is always constructible for Y — no fallback needed.
+  const recipe = xm.map(([a,b]) => [tierX[a], tierX[b]]);
+  const ym = buildMatchingFromRecipe(n, recipe, avoidY, 300) || xm;
+
+  const zip = (idxPairs, tierArr, team) => idxPairs.map(([a,b])=>({players:[team[a],team[b]], sum:tierArr[a]+tierArr[b]}));
+  const xPairs = zip(xm, tierX, teamX);
+  const yPairs = zip(ym, tierY, teamY);
+  return {
+    games: xPairs.map((xp,i)=>({x:xp.players, y:yPairs[i].players})),
+    xm, ym,
+  };
+}
+
+function genMatchupGames(teamX, teamY, tagX, tagY){
+  const round1 = genOneRound(teamX, teamY, null, null);
+  const usedX = new Set(round1.xm.map(([a,b])=>idxPairKey(a,b)));
+  const usedY = new Set(round1.ym.map(([a,b])=>idxPairKey(a,b)));
+  const round2 = genOneRound(teamX, teamY, usedX, usedY);
+  const games = [...round1.games, ...round2.games];
+  return games.map(g=>({
+    matchup: `${tagX}${tagY}`,
+    teamXKey: tagX, teamYKey: tagY,
+    x: [g.x[0].name, g.x[1].name],
+    y: [g.y[0].name, g.y[1].name],
+  }));
+}
+
+function greedySchedule(games, courts){
+  const remaining = [...games];
+  const lastRound = {};
+  const teamScheduledCount = {};
+  games.forEach(g=>{ teamScheduledCount[g.teamXKey]=0; teamScheduledCount[g.teamYKey]=0; });
+  const rounds = [];
+  let round = 0;
+  while(remaining.length>0){
+    round++;
+    const chosen = [];
+    const chosenPlayers = new Set();
+    const matchupsUsed = new Set();
+    for(let slot=0; slot<courts; slot++){
+      const valid = remaining.filter(g=>{
+        const names = [...g.x, ...g.y];
+        return names.every(n=>!chosenPlayers.has(n));
+      });
+      if(valid.length===0) break;
+      valid.sort((a,b)=>{
+        const namesA = [...a.x, ...a.y], namesB=[...b.x, ...b.y];
+        const consecA = namesA.filter(n=>lastRound[n]===round-1).length;
+        const consecB = namesB.filter(n=>lastRound[n]===round-1).length;
+        if(consecA !== consecB) return consecA - consecB;
+        // spread each team's games evenly across the whole timeline, not clustered early/late
+        const teamLoadA = teamScheduledCount[a.teamXKey] + teamScheduledCount[a.teamYKey];
+        const teamLoadB = teamScheduledCount[b.teamXKey] + teamScheduledCount[b.teamYKey];
+        if(teamLoadA !== teamLoadB) return teamLoadA - teamLoadB;
+        const usedA = matchupsUsed.has(a.matchup)?1:0;
+        const usedB = matchupsUsed.has(b.matchup)?1:0;
+        return usedA - usedB;
+      });
+      const g = valid[0];
+      chosen.push(g);
+      remaining.splice(remaining.indexOf(g),1);
+      [...g.x, ...g.y].forEach(n=>chosenPlayers.add(n));
+      matchupsUsed.add(g.matchup);
+      teamScheduledCount[g.teamXKey]++; teamScheduledCount[g.teamYKey]++;
+    }
+    chosen.forEach(g=>{ [...g.x, ...g.y].forEach(n=>{ lastRound[n]=round; }); });
+    rounds.push(chosen);
+  }
+  return rounds;
+}
+
+function addMinutes(hhmm, mins){
+  const [h,m] = hhmm.split(':').map(Number);
+  const total = h*60+m+mins;
+  const hh = Math.floor((total/60)%24).toString().padStart(2,'0');
+  const mm = (total%60).toString().padStart(2,'0');
+  return `${hh}:${mm}`;
+}
+function to12h(hhmm){
+  const [h,m] = hhmm.split(':').map(Number);
+  const period = h>=12 ? 'PM':'AM';
+  const hr = ((h+11)%12)+1;
+  return `${hr}:${m.toString().padStart(2,'0')} ${period}`;
+}
+
+function buildFullSchedule(config, courts, startTime, teamKeys){
+  // skill is inferred purely from list order in tiers: player 1 = strongest tier, last player = weakest tier
+  const rankBySkill = (players) => players.map((p,i)=>({name:p.name, skill: skillTier(i, players.length)}));
+  const keys = teamKeys || TEAM_KEYS;
+  const teams = {};
+  keys.forEach(k=>{ teams[k] = rankBySkill(config[k].players); });
+
+  const games = [];
+  for(let i=0;i<keys.length;i++){
+    for(let j=i+1;j<keys.length;j++){
+      games.push(...genMatchupGames(teams[keys[i]], teams[keys[j]], keys[i], keys[j]));
+    }
+  }
+  const rounds = greedySchedule(games, courts);
+
+  let gid = 0;
+  const scheduleRounds = rounds.map((roundGames, ri)=>{
+    const time = addMinutes(startTime, ri*25);
+    return {
+      roundNum: ri+1,
+      time,
+      games: roundGames.map((g, ci)=>({
+        id: `g${gid++}`,
+        matchup: g.matchup,
+        teamXKey: g.teamXKey, teamYKey: g.teamYKey,
+        x: [...g.x], y: [...g.y],
+        court: ci+1,
+        scoreX: null, scoreY: null, live: false,
+        swaps: [],
+      }))
+    };
+  });
+  return scheduleRounds;
+}
+
+/* ---------------- power swap ---------------- */
+function isPlayerSwapped(name){
+  return !!(state.swappedPlayers && state.swappedPlayers.includes(name));
+}
+
+function skillOf(teamKey, name){
+  const players = state.config[teamKey].players;
+  const idx = players.findIndex(p=>p.name===name);
+  return idx===-1 ? null : skillTier(idx, players.length);
+}
+
+
+function spawnConfetti(targetEl){
+  if(!targetEl) return;
+  const colors = ['#FFC93C', '#FF6B4A', '#5FC9E0', '#3FBE7A', '#F5F1E4'];
+  for(let i=0; i<40; i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100 + '%';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration = (1.6 + Math.random()*1.2) + 's';
+    piece.style.animationDelay = (Math.random()*0.4) + 's';
+    piece.style.borderRadius = Math.random()>0.5 ? '50%' : '2px';
+    targetEl.appendChild(piece);
+    setTimeout(()=>{ piece.remove(); }, 3200);
+  }
+}
+
+function scrollAndFlash(gameIds){
+  const first = document.getElementById(`game-${gameIds[0]}`);
+  if(first){ first.scrollIntoView({behavior:'smooth', block:'center'}); }
+  gameIds.forEach(id=>{
+    const el = document.getElementById(`game-${id}`);
+    if(el){
+      el.classList.add('flash-highlight');
+      setTimeout(()=>{ el.classList.remove('flash-highlight'); }, 2600);
+    }
+  });
+}
+
+function findNextSameCourtGame(court, afterRoundNum){
+  const upcoming = state.schedule
+    .filter(r=>r.roundNum > afterRoundNum)
+    .sort((a,b)=>a.roundNum-b.roundNum);
+  for(const r of upcoming){
+    const g = r.games.find(g=>g.court===court);
+    if(g) return g;
+  }
+  return null;
+}
+
+/* ---------------- sound ---------------- */
+let soundEnabled = true;
+let audioCtx = null;
+function getAudioCtx(){
+  if(!audioCtx){
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return null;
+    audioCtx = new Ctx();
+  }
+  if(audioCtx.state === 'suspended'){ audioCtx.resume().catch(()=>{}); }
+  return audioCtx;
+}
+function playTone(freq, startOffset, duration, volume, type){
+  if(!soundEnabled) return;
+  try{
+    const ctx = getAudioCtx();
+    if(!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
+    const t0 = ctx.currentTime + startOffset;
+    gain.gain.setValueAtTime(0.0001, t0);
+    gain.gain.exponentialRampToValueAtTime(volume, t0 + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + duration + 0.03);
+  }catch(e){ /* audio not available — fail silently */ }
+}
+function playNotifySound(){
+  playTone(880, 0, 0.11, 0.14, 'sine');
+  playTone(1175, 0.09, 0.14, 0.11, 'sine');
+}
+function playChampionSound(){
+  const notes = [523.25, 659.25, 783.99, 1046.5]; // C5 E5 G5 C6 — little fanfare
+  notes.forEach((f,i)=> playTone(f, i*0.13, 0.32, 0.16, 'triangle'));
+}
+function playWinSound(){
+  playTone(659.25, 0, 0.1, 0.14, 'triangle');
+  playTone(987.77, 0.09, 0.18, 0.14, 'triangle');
+}
+let championSoundPlayedThisSession = false;
+
+function showConfirmDialog(message, onConfirm){
+  document.querySelectorAll('.confirm-overlay').forEach(o=>o.remove());
+  const overlay = document.createElement('div');
+  overlay.className = 'confirm-overlay';
+  overlay.innerHTML = `
+    <div class="confirm-box">
+      <p>${message}</p>
+      <div class="confirm-actions">
+        <button class="btn small secondary" id="confirmCancelBtn">Cancel</button>
+        <button class="btn small coral" id="confirmOkBtn">Confirm</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) overlay.remove(); });
+  overlay.querySelector('#confirmCancelBtn').addEventListener('click', ()=>{ overlay.remove(); });
+  overlay.querySelector('#confirmOkBtn').addEventListener('click', ()=>{
+    overlay.remove();
+    onConfirm();
+  });
+}
+
+function summarizeBackup(entry, prevEntry){
+  const snap = JSON.parse(entry.snapshot);
+  const totalGames = snap.schedule.reduce((s,r)=>s+r.games.length, 0);
+  const scoredGames = snap.schedule.reduce((s,r)=>s+r.games.filter(g=>g.scoreX!=null && g.scoreY!=null).length, 0);
+  if(!prevEntry) return `${scoredGames}/${totalGames} games scored`;
+  const prevSnap = JSON.parse(prevEntry.snapshot);
+  const prevScored = prevSnap.schedule.reduce((s,r)=>s+r.games.filter(g=>g.scoreX!=null && g.scoreY!=null).length, 0);
+  const prevTotalGames = prevSnap.schedule.reduce((s,r)=>s+r.games.length, 0);
+  if(totalGames !== prevTotalGames) return `schedule changed (${totalGames} games)`;
+  if(scoredGames !== prevScored) return `${scoredGames}/${totalGames} games scored`;
+  return `updated (swaps/challenges/other changes)`;
+}
+
+function getActivityLogEvents(){
+  if(!state || !state.schedule) return [];
+  const events = [];
+  const seenSwapIds = new Set();
+  state.schedule.forEach(round=>{
+    round.games.forEach(g=>{
+      (g.swaps || []).forEach(s=>{
+        if(seenSwapIds.has(s.id)) return;
+        seenSwapIds.add(s.id);
+        const idMatch = /swap-(\d+)-/.exec(s.id || '');
+        const time = idMatch ? parseInt(idMatch[1], 10) : 0;
+        events.push({ type:'swap', time, team:s.team, from:s.from, to:s.to, roundNum:round.roundNum, court:g.court });
+      });
+      if(g.rematched){
+        const idMatch = /rematch-(\d+)-/.exec(g.id || '');
+        // fall back to searching for the linked rematch game's id for a timestamp
+        let time = idMatch ? parseInt(idMatch[1], 10) : 0;
+        if(!time){
+          state.schedule.forEach(r2=>r2.games.forEach(g2=>{
+            if(g2.rematchOf === g.id){
+              const m2 = /rematch-(\d+)-/.exec(g2.id || '');
+              if(m2) time = parseInt(m2[1], 10);
+            }
+          }));
+        }
+        events.push({ type:'challenge', time, team:g.rematchedBy, roundNum:round.roundNum, court:g.court,
+          teamXKey:g.teamXKey, teamYKey:g.teamYKey });
+      }
+    });
+  });
+  return events.sort((a,b)=> b.time - a.time);
+}
+
+function renderActivityLog(){
+  const wrap = document.getElementById('activityLogWrap');
+  const countEl = document.getElementById('activityLogCount');
+  const listEl = document.getElementById('activityLogList');
+  if(!wrap || !listEl) return;
+  if(!isAdmin || !state){ wrap.style.display = 'none'; return; }
+  const events = getActivityLogEvents();
+  wrap.style.display = '';
+  countEl.textContent = `${events.length} action${events.length===1?'':'s'}`;
+  if(events.length === 0){
+    listEl.innerHTML = `<div style="padding:12px 18px; font-size:12px; opacity:0.6;">No swaps or rematch challenges yet.</div>`;
+    return;
+  }
+  listEl.innerHTML = events.map(e=>{
+    if(e.type === 'swap'){
+      return `<div class="win-row">
+        <span class="pname-label">⚡ <span style="color:${TEAM_ACCENT[e.team]}">${teamLabel(e.team)}</span> swapped ${e.from} ↔ ${e.to}</span>
+        <span class="court-tag">Round ${e.roundNum} · Court ${e.court}</span>
+      </div>`;
+    }
+    return `<div class="win-row">
+      <span class="pname-label">🔄 <span style="color:${TEAM_ACCENT[e.team]}">${teamLabel(e.team)}</span> used their rematch challenge — ${teamLabel(e.teamXKey)} vs ${teamLabel(e.teamYKey)}</span>
+      <span class="court-tag">Round ${e.roundNum} · Court ${e.court}</span>
+    </div>`;
+  }).join('');
+}
+
+function updateLocalBackupUI(){
+  const wrap = document.getElementById('localBackupWrap');
+  const countEl = document.getElementById('localBackupCount');
+  const listEl = document.getElementById('localBackupList');
+  if(!wrap || !listEl) return;
+  if(!isAdmin || localBackupHistory.length === 0){
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = '';
+  countEl.textContent = `${localBackupHistory.length} saved`;
+  listEl.innerHTML = localBackupHistory.map((entry, i)=>{
+    const t = new Date(entry.time).toLocaleTimeString([], {hour:'numeric', minute:'2-digit', second:'2-digit'});
+    const summary = summarizeBackup(entry, localBackupHistory[i+1]);
+    return `
+      <div class="win-row">
+        <span class="pname-label">${t} <span style="opacity:0.55; font-weight:400;">— ${summary}</span></span>
+        <button class="btn small secondary local-backup-restore-btn" data-index="${i}">↩️ Restore</button>
+      </div>
+    `;
+  }).join('');
+  listEl.querySelectorAll('.local-backup-restore-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      restoreLocalBackup(parseInt(btn.getAttribute('data-index'), 10));
+    });
+  });
+}
+
+function restoreLocalBackup(index){
+  const entry = localBackupHistory[index];
+  if(!entry){ alert('That local backup is no longer available.'); return; }
+  const t = new Date(entry.time).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+  showConfirmDialog(`Restore the local backup from ${t}? This replaces the current tournament (for everyone) with that saved snapshot.`, async ()=>{
+    state = JSON.parse(entry.snapshot);
+    render();
+    const ok = await saveState();
+    showToast(ok ? `Restored from ${t} and saved.` : 'Restored on this screen — saving to shared storage is still failing, try Retry Save above.', '↩️');
+  });
+}
+
+function showToast(message, icon){
+  document.querySelectorAll('.toast').forEach(t=>t.remove());
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML = `<span>${icon || '🔄'}</span><span>${message}</span>`;
+  document.body.appendChild(toast);
+  playNotifySound();
+  setTimeout(()=>{ toast.remove(); }, 4500);
+}
+
+function requestRematch(gameId, teamKey){
+  let original = null, originalRound = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.id===gameId);
+    if(found){ original = found; originalRound = round; break; }
+  }
+  if(!original) return;
+  const done = original.scoreX!=null && original.scoreY!=null && original.scoreX!==original.scoreY;
+  if(!done){ alert('Only a finished game can be challenged for a rematch.'); return; }
+  if(original.rematched){ alert('This game has already been challenged for a rematch once.'); return; }
+  const loserKey = original.scoreX > original.scoreY ? original.teamYKey : original.teamXKey;
+  if(teamKey !== loserKey){ alert('Only the losing team of this game can challenge it for a rematch.'); return; }
+  if(!state.challenges) state.challenges = { cap: 1 };
+  if((state.challenges[teamKey] ?? 0) <= 0){ alert(`${teamLabel(teamKey)} has no rematch challenges left — each team gets one for the whole tournament.`); return; }
+
+  const lastRound = state.schedule[state.schedule.length-1];
+  const newRoundNum = lastRound.roundNum + 1;
+  const newTime = addMinutes(lastRound.time, 25);
+  const newGameId = `rematch-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+
+  const rematchGame = {
+    id: newGameId,
+    matchup: original.matchup,
+    teamXKey: original.teamXKey, teamYKey: original.teamYKey,
+    x: [...original.x], y: [...original.y],
+    court: original.court,
+    scoreX: null, scoreY: null, live: false,
+    swaps: [], rematched: false, rematchOf: original.id,
+  };
+
+  state.schedule.push({ roundNum: newRoundNum, time: newTime, games: [rematchGame] });
+  original.rematched = true;
+  original.rematchedBy = teamKey;
+  state.challenges[teamKey] -= 1;
+  showToast(`${teamLabel(teamKey)} used their rematch challenge — new match scheduled as Round ${newRoundNum}.`, '🔄');
+  saveState();
+  render();
+}
+
+function undoRematch(gameId){
+  let original = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.id===gameId);
+    if(found){ original = found; break; }
+  }
+  if(!original || !original.rematched){ return; }
+
+  // find the linked rematch game (and its round)
+  let rematchGame = null, rematchRound = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.rematchOf===gameId);
+    if(found){ rematchGame = found; rematchRound = round; break; }
+  }
+  if(rematchGame){
+    const rematchDone = rematchGame.scoreX!=null && rematchGame.scoreY!=null && rematchGame.scoreX!==rematchGame.scoreY;
+    if(rematchDone){
+      alert('The rematch has already been played and scored — undoing now would discard that result, so this is blocked. Clear its score first if you really want to undo.');
+      return;
+    }
+    rematchRound.games = rematchRound.games.filter(g=>g.id!==rematchGame.id);
+    if(rematchRound.games.length === 0){
+      state.schedule = state.schedule.filter(r=>r !== rematchRound);
+    }
+  }
+
+  const teamKey = original.rematchedBy;
+  if(teamKey && state.challenges && state.challenges[teamKey] != null){
+    state.challenges[teamKey] += 1;
+  }
+  original.rematched = false;
+  original.rematchedBy = null;
+
+  showToast('Rematch challenge undone — the original result counts again and the challenge is refunded.', '↩️');
+  saveState();
+  render();
+}
+
+function getPlayerGames(name){
+  const games = [];
+  state.schedule.forEach(round=>{
+    round.games.forEach(g=>{
+      if(g.x.includes(name) || g.y.includes(name)){
+        const side = g.x.includes(name) ? 'x' : 'y';
+        const oppKey = side==='x' ? g.teamYKey : g.teamXKey;
+        const done = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+        games.push({ roundNum: round.roundNum, time: round.time, gameId: g.id, court: g.court, opponent: teamLabel(oppKey), done, isRematch: !!g.rematchOf });
+      }
+    });
+  });
+  return games;
+}
+
+function doTradeSwap(roundNum, gameId, side, slotIdx, otherName, otherGameId){
+  const round = state.schedule.find(r=>r.roundNum===roundNum);
+  const game = round.games.find(g=>g.id===gameId);
+  const teamKey = side==='x' ? game.teamXKey : game.teamYKey;
+  if(state.swaps[teamKey] <= 0) return;
+  if(game.rematchOf){ alert('This is a rematch game — players cannot be swapped in or out of a rematch.'); return; }
+  const gameDone = game.scoreX!=null && game.scoreY!=null && game.scoreX!==game.scoreY;
+  if(gameDone){ alert('This game is already Final — you can only swap players in a game that has not been scored yet.'); return; }
+  const thisName = game[side][slotIdx];
+
+  let otherGame = null, otherRound = null, otherSide=null, otherIdx=null;
+  for(const r of state.schedule){
+    const found = r.games.find(g=>g.id===otherGameId);
+    if(found){
+      otherGame = found; otherRound = r;
+      ['x','y'].forEach(s=>{ found[s].forEach((n,i)=>{ if(n===otherName){ otherSide=s; otherIdx=i; } }); });
+      break;
+    }
+  }
+  if(!otherGame || otherSide===null) return;
+  if(otherGame.rematchOf){ alert('That game is a rematch — players cannot be swapped in or out of a rematch.'); return; }
+  const otherGameDone = otherGame.scoreX!=null && otherGame.scoreY!=null && otherGame.scoreX!==otherGame.scoreY;
+  if(otherGameDone){ alert(`${otherName}'s game is already Final — you can only swap into a pending game.`); return; }
+
+  // trade: each player takes over the other's spot, so total games played for each stays unchanged
+  game[side][slotIdx] = otherName;
+  otherGame[otherSide][otherIdx] = thisName;
+  const swapId = `swap-${Date.now()}-${Math.random().toString(36).slice(2,7)}`;
+  game.swaps.push({id:swapId, team:teamKey, from:thisName, to:otherName, trade:true, linkedGameId:otherGame.id});
+  otherGame.swaps.push({id:swapId, team:teamKey, from:otherName, to:thisName, trade:true, linkedGameId:game.id});
+
+  state.swaps[teamKey] -= 1;
+  if(!state.swappedPlayers) state.swappedPlayers = [];
+  state.swappedPlayers.push(thisName, otherName);
+  openSwapPickerId = null;
+  showToast(`Swap complete: ${otherName} now plays Court ${game.court} (Round ${round.roundNum}) — ${thisName} now plays Court ${otherGame.court} (Round ${otherRound.roundNum}).`, '🔁');
+  saveState();
+  render();
+  setTimeout(()=>{ scrollAndFlash([game.id, otherGame.id]); }, 50);
+}
+
+function undoSwap(gameId, swapId){
+  let game = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.id===gameId);
+    if(found){ game = found; break; }
+  }
+  if(!game) return;
+  const entry = game.swaps.find(s=>s.id===swapId);
+  if(!entry){ alert('That swap could not be found — it may have already been undone.'); return; }
+
+  const gameDone = game.scoreX!=null && game.scoreY!=null && game.scoreX!==game.scoreY;
+  if(gameDone){ alert('This game is already Final — swaps can only be undone on a game that has not been scored yet.'); return; }
+
+  let linkedGame = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.id===entry.linkedGameId);
+    if(found){ linkedGame = found; break; }
+  }
+  if(linkedGame){
+    const linkedDone = linkedGame.scoreX!=null && linkedGame.scoreY!=null && linkedGame.scoreX!==linkedGame.scoreY;
+    if(linkedDone){ alert(`${entry.to}'s other game is already Final — this swap can no longer be undone.`); return; }
+  }
+
+  // put both players back where they started
+  ['x','y'].forEach(s=>{
+    const i = game[s].indexOf(entry.to);
+    if(i !== -1) game[s][i] = entry.from;
+  });
+  if(linkedGame){
+    ['x','y'].forEach(s=>{
+      const i = linkedGame[s].indexOf(entry.from);
+      if(i !== -1) linkedGame[s][i] = entry.to;
+    });
+    linkedGame.swaps = linkedGame.swaps.filter(s=>s.id!==swapId);
+  }
+  game.swaps = game.swaps.filter(s=>s.id!==swapId);
+
+  // free both players up to be swapped again, and refund the team's swap
+  state.swappedPlayers = (state.swappedPlayers || []).filter(n=>n!==entry.from && n!==entry.to);
+  if(state.swaps && state.swaps[entry.team] != null) state.swaps[entry.team] += 1;
+
+  showToast(`Swap undone — ${entry.from} and ${entry.to} are back in their original games.`, '↩️');
+  saveState();
+  render();
+}
+
+// Undo a Final match result entirely (Admin only): clears the score and puts the game back to
+// Upcoming. This deliberately does NOT touch swaps, rematch links, or challenge state — it only
+// clears the score/live flag, so any rematch challenge tied to this game (if it's the original)
+// or its own rematch-outcome bonus/penalty (if it's a rematch game) is recalculated automatically
+// the next time standings render, since those are derived live from scores rather than stored.
+function undoMatchScore(gameId){
+  let game = null;
+  for(const round of state.schedule){
+    const found = round.games.find(g=>g.id===gameId);
+    if(found){ game = found; break; }
+  }
+  if(!game) return;
+  const wasDecisive = game.scoreX!=null && game.scoreY!=null && game.scoreX!==game.scoreY;
+  if(!wasDecisive) return;
+  game.scoreX = null;
+  game.scoreY = null;
+  game.live = false;
+  showToast('Match result undone — the score was cleared and this game is back to Upcoming.', '↩️');
+  saveState();
+  render();
+}
+
+/* ---------------- standings ---------------- */
+function computeStandings(){
+  const teamKeys = Object.keys(state.config);
+  const matchupKeys = [];
+  for(let i=0;i<teamKeys.length;i++){
+    for(let j=i+1;j<teamKeys.length;j++){ matchupKeys.push(teamKeys[i]+teamKeys[j]); }
+  }
+  const allGames = state.schedule.flatMap(r=>r.games);
+  const countableGames = allGames.filter(g=>!g.rematched); // a challenged game's win is on hold until its rematch is played
+
+  const battle = {};
+  matchupKeys.forEach(mk=>{
+    const gms = countableGames.filter(g=>g.matchup===mk);
+    const teamXKey = mk[0], teamYKey = mk[1];
+    let winsX=0, winsY=0, playedCount=0;
+    gms.forEach(g=>{
+      if(g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY){
+        playedCount++;
+        if(g.scoreX>g.scoreY) winsX++; else winsY++;
+      }
+    });
+    battle[mk] = {teamXKey, teamYKey, winsX, winsY, total:gms.length, played:playedCount};
+  });
+
+  const teamStats = {};
+  teamKeys.forEach(k=>{ teamStats[k] = {battlePts:0, gamesWon:0, pointsScored:0, gamesPlayed:0}; });
+
+  matchupKeys.forEach(mk=>{
+    const b = battle[mk];
+    if(b.played === b.total && b.total>0){
+      if(b.winsX>b.winsY){ teamStats[b.teamXKey].battlePts += 1; }
+      else if(b.winsY>b.winsX){ teamStats[b.teamYKey].battlePts += 1; }
+      else { teamStats[b.teamXKey].battlePts += 0.5; teamStats[b.teamYKey].battlePts += 0.5; }
+    }
+  });
+
+  countableGames.forEach(g=>{
+    if(g.scoreX!=null && g.scoreY!=null){
+      teamStats[g.teamXKey].pointsScored += g.scoreX;
+      teamStats[g.teamYKey].pointsScored += g.scoreY;
+      teamStats[g.teamXKey].gamesPlayed += 1;
+      teamStats[g.teamYKey].gamesPlayed += 1;
+      if(g.scoreX>g.scoreY) teamStats[g.teamXKey].gamesWon += 1;
+      else if(g.scoreY>g.scoreX) teamStats[g.teamYKey].gamesWon += 1;
+    }
+  });
+
+  const allComplete = matchupKeys.every(mk=>battle[mk].played === battle[mk].total);
+  return {battle, teamStats, allComplete, matchupKeys};
+}
+
+/* ---------------- rendering ---------------- */
+function render(){
+  if(!state){
+    document.getElementById('setupSection').classList.remove('hidden');
+    document.getElementById('scheduleSection').classList.add('hidden');
+    document.getElementById('standingsSection').classList.add('hidden');
+    document.getElementById('leaderboardSection').classList.add('hidden');
+    document.getElementById('swapSection').classList.add('hidden');
+    renderTeamsGrid();
+    updateSetupAdminGate();
+    const identityBar = document.getElementById('teamIdentityBar');
+    if(identityBar) identityBar.style.display = 'none';
+    return;
+  }
+  document.getElementById('setupSection').classList.add('hidden');
+  document.getElementById('scheduleSection').classList.remove('hidden');
+  document.getElementById('standingsSection').classList.remove('hidden');
+  document.getElementById('leaderboardSection').classList.remove('hidden');
+  document.getElementById('swapSection').classList.remove('hidden');
+
+  if(!state.challenges){ state.challenges = { cap: 1 }; Object.keys(state.config).forEach(k=>{ state.challenges[k] = 1; }); }
+
+  const legacyTeamKeys = Object.keys(state.config);
+  const statusEl = document.getElementById('saveStatus');
+  if(legacyTeamKeys.length > 3 && statusEl && statusEl.dataset.owner !== 'save'){
+    statusEl.classList.remove('hidden');
+    statusEl.dataset.owner = 'legacy';
+    statusEl.innerHTML = `⚠️ This tournament has ${legacyTeamKeys.length} teams (${legacyTeamKeys.join(', ')}) from an older version — this app now only supports 3 teams. Use <b>Reset Tournament</b> below to start a fresh 3-team tournament.`;
+  } else if(statusEl && statusEl.dataset.owner === 'legacy'){
+    statusEl.classList.add('hidden');
+    delete statusEl.dataset.owner;
+  }
+
+  const totalGames = state.schedule.reduce((s,r)=>s+r.games.length,0);
+  document.getElementById('scheduleSub').textContent =
+    `${totalGames} games · ${state.schedule.length} rounds · ${state.courts} court${state.courts>1?'s':''} · starts ${to12h(state.startTime)} · 25 min/game`;
+
+  renderSchedule();
+  renderStandings();
+  renderLeaderboard();
+  renderSwapTracker();
+  renderChallengeTracker();
+  applyPlayerSearchHighlight();
+  applyGameFilter();
+
+  const adminSaveBtn = document.getElementById('adminSaveBtn');
+  if(adminSaveBtn) adminSaveBtn.style.display = isAdmin ? '' : 'none';
+  updateLocalBackupUI();
+  renderTeamIdentityBar();
+  renderActivityLog();
+}
+
+function teamLabel(key){ return state.config[key].name || `Team ${key}`; }
+function displaySkill(teamKey, name){
+  const players = state.config[teamKey].players;
+  const idx = players.findIndex(p=>p.name===name);
+  return idx===-1 ? '' : `⚡${skillTier(idx, players.length)}`;
+}
+
+function renderSchedule(){
+  const container = document.getElementById('scheduleContainer');
+  container.innerHTML = '';
+  state.schedule.forEach(round=>{
+    const block = document.createElement('div');
+    block.className = 'round-block';
+    block.id = `round-${round.roundNum}`;
+    block.innerHTML = `<div class="round-label"><span>ROUND ${round.roundNum} · ${to12h(round.time)}</span><span class="line"></span></div>`;
+    const gamesRow = document.createElement('div');
+    gamesRow.className = 'games-row';
+
+    round.games.forEach(g=>{
+      if(g.live === undefined) g.live = false;
+      if(g.rematched === undefined) g.rematched = false;
+      if(g.rematchOf === undefined) g.rematchOf = null;
+      if(!g.swaps) g.swaps = [];
+      const done = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+      let rematchResolved = false;
+      let linkedRematchGame = null;
+      if(g.rematched){
+        for(const r2 of state.schedule){
+          const linked = r2.games.find(g2=>g2.rematchOf===g.id);
+          if(linked){
+            linkedRematchGame = linked;
+            rematchResolved = linked.scoreX!=null && linked.scoreY!=null && linked.scoreX!==linked.scoreY;
+            break;
+          }
+        }
+      }
+      const card = document.createElement('div');
+      card.id = `game-${g.id}`;
+      card.dataset.players = [...g.x, ...g.y].join('|').toLowerCase();
+      card.className = 'game-card' + ((done && (!g.rematched || rematchResolved)) ? ' done':'') + ((g.live || (done && g.rematched && !rematchResolved)) ? ' live':'');
+      card.style.position='relative';
+
+      // Winner tint/watermark: only once this game's own score is the one that actually counts —
+      // not a game whose result is on hold pending a rematch challenge.
+      const isFinalResult = done && !g.rematched;
+      const winnerKey = isFinalResult ? (g.scoreX > g.scoreY ? g.teamXKey : g.teamYKey) : null;
+      const winnerRgb = winnerKey ? TEAM_RGB[winnerKey] : null;
+      if(winnerRgb){
+        card.style.background = `linear-gradient(135deg, rgba(${winnerRgb},0.16), rgba(${winnerRgb},0.03))`;
+      }
+
+      const xLabel = teamLabel(g.teamXKey), yLabel = teamLabel(g.teamYKey);
+      const statusHtml = done
+        ? (g.rematched
+            ? (rematchResolved
+                ? `<span class="status-badge done"><span class="dot"></span>Done Rematch</span>`
+                : `<span class="status-badge live"><span class="dot"></span>Pending Rematch</span>`)
+            : `<span class="status-badge done"><span class="dot"></span>Final</span>`)
+        : g.live
+          ? `<span class="status-badge live" id="statusBadge-${g.id}"><span class="dot"></span>Live</span>`
+          : `<span class="status-badge upcoming" id="statusBadge-${g.id}"><span class="dot"></span>Upcoming</span>`;
+      const rematchTagHtml = g.rematchOf ? `<span class="court-tag" style="color:var(--sun-yellow);">🔄 Rematch</span>` : '';
+      const winnerWatermarkHtml = winnerRgb ? `
+        <div style="position:absolute; inset:0; z-index:0; display:flex; align-items:center; justify-content:center; overflow:hidden; pointer-events:none; border-radius:14px;">
+          <span style="font-family:'Anton',sans-serif; font-size:44px; letter-spacing:0.03em; color:rgba(${winnerRgb},0.16); transform:rotate(-10deg); white-space:nowrap; text-transform:uppercase;">${teamLabel(winnerKey)} WON</span>
+        </div>
+      ` : '';
+      card.innerHTML = `
+        ${winnerWatermarkHtml}
+        <div style="position:relative; z-index:1;">
+        <div class="game-top">
+          <span class="matchup-badge" style="color:${TEAM_ACCENT[g.teamXKey]}">${xLabel} <span style="color:rgba(245,241,228,0.4)">vs</span> <span style="color:${TEAM_ACCENT[g.teamYKey]}">${yLabel}</span></span>
+          <span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+            ${rematchTagHtml}
+            <span class="court-number-badge">Court ${g.court}</span>
+            ${(isAdmin && done) ? '<button class="undo-match-btn" title="Undo match — clear score and reopen this game" style="background:transparent; border:none; cursor:pointer; padding:0; font-size:14px; line-height:1; opacity:0.7;">↩️</button>' : ''}
+            ${statusHtml}
+          </span>
+        </div>
+        <div class="side-team-label" style="color:${TEAM_ACCENT[g.teamXKey]}">${xLabel} <span style="opacity:0.6; font-weight:400;">(total ${g.x.reduce((s,n)=>s+skillOf(g.teamXKey,n),0)})</span></div>
+        <div class="side" data-side="x">
+          <div class="players">
+            ${g.x.map((n,i)=>`<span class="pname${g.rematchOf ? ' no-swap' : ''}" data-side="x" data-idx="${i}">${n}</span><span class="skilldots-inline">${displaySkill(g.teamXKey,n)}</span>`).join(' &amp; ')}
+          </div>
+          <input type="number" class="score-input" data-side="x" value="${g.scoreX ?? ''}" placeholder="0" ${isAdmin?'':'disabled'}>
+        </div>
+        <div class="vs-label">VS</div>
+        <div class="side-team-label" style="color:${TEAM_ACCENT[g.teamYKey]}">${yLabel} <span style="opacity:0.6; font-weight:400;">(total ${g.y.reduce((s,n)=>s+skillOf(g.teamYKey,n),0)})</span></div>
+        <div class="side" data-side="y">
+          <div class="players">
+            ${g.y.map((n,i)=>`<span class="pname${g.rematchOf ? ' no-swap' : ''}" data-side="y" data-idx="${i}">${n}</span><span class="skilldots-inline">${displaySkill(g.teamYKey,n)}</span>`).join(' &amp; ')}
+          </div>
+          <input type="number" class="score-input" data-side="y" value="${g.scoreY ?? ''}" placeholder="0" ${isAdmin?'':'disabled'}>
+        </div>
+        <div class="game-actions">
+          <span style="display:flex; flex-direction:column; gap:4px; align-items:flex-start;">
+            ${(g.swaps && g.swaps.length) ? (()=>{
+                const xSum = g.x.reduce((s,n)=>s+skillOf(g.teamXKey,n), 0);
+                const ySum = g.y.reduce((s,n)=>s+skillOf(g.teamYKey,n), 0);
+                const sumLabel = xSum===ySum ? `total still ${xSum}=${ySum} ✓` : `total now ${xSum} vs ${ySum} (unbalanced)`;
+                const rows = g.swaps.map(s => `
+                  <span class="court-tag" style="color:var(--sun-yellow); display:flex; align-items:center; gap:6px;">
+                    ⚡ ${teamLabel(s.team)} POWERSWAP: ${s.from} - ${s.to}
+                    ${(!done && (isAdmin || (isCaptain && myTeamKey === s.team))) ? `<button class="btn small secondary undo-swap-btn" data-swap-id="${s.id}" style="padding:3px 8px; font-size:11px;">↩️ Undo</button>` : ''}
+                  </span>
+                `).join('');
+                return rows + `<span class="court-tag">${sumLabel}</span>`;
+              })() : ''}
+          </span>
+          <span style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+            ${done ? (g.rematched
+                ? (rematchResolved
+                    ? `<span class="court-tag" style="color:var(--green-win);">✓ Rematch complete${g.rematchedBy ? ' — challenged by '+teamLabel(g.rematchedBy) : ''}</span>`
+                    : `<span class="court-tag" style="color:var(--sun-yellow);">🔄 Challenged — win on hold until rematch${g.rematchedBy ? ' (by '+teamLabel(g.rematchedBy)+')' : ''}</span>
+                       ${(isAdmin || (isCaptain && myTeamKey === g.rematchedBy)) ? '<button class="btn small secondary undo-rematch-btn">↩️ Undo</button>' : ''}`)
+                : (()=>{
+                    const loserKey = g.scoreX > g.scoreY ? g.teamYKey : g.teamXKey;
+                    const canChallenge = isAdmin || (isCaptain && myTeamKey === loserKey);
+                    return (canChallenge && state.challenges && state.challenges[loserKey] > 0)
+                      ? `<button class="btn small secondary rematch-btn" data-team="${loserKey}">🔄 ${teamLabel(loserKey)} Challenge (loser)</button>`
+                      : '';
+                  })()
+              ) : ''}
+            ${isAdmin ? `<button class="btn small secondary save-score-btn">${done ? '✓ Saved' : 'Save Score'}</button>` : '<span class="court-tag" style="opacity:0.6;">🔒 Admin only</span>'}
+          </span>
+        </div>
+        </div>
+      `;
+
+      // toggle live status (admin only; only meaningful before the game is final)
+      if(!done){
+        const badge = card.querySelector(`#statusBadge-${g.id}`);
+        badge.addEventListener('click', ()=>{
+          if(!isAdmin){ alert('Admin login required to change a game\'s live status. Use the Admin Login button at the top.'); return; }
+          if(!g.live){
+            // about to turn this game Live — make sure none of these 4 players are already live elsewhere
+            const players = [...g.x, ...g.y];
+            let conflict = null;
+            for(const r2 of state.schedule){
+              for(const g2 of r2.games){
+                if(g2.id === g.id || !g2.live) continue;
+                const overlapName = players.find(p => g2.x.includes(p) || g2.y.includes(p));
+                if(overlapName){ conflict = { name: overlapName, court: g2.court, roundNum: r2.roundNum }; break; }
+              }
+              if(conflict) break;
+            }
+            if(conflict){
+              alert(`${conflict.name} is already playing live on Court ${conflict.court} (Round ${conflict.roundNum}) — mark that game finished before starting this one.`);
+              return;
+            }
+          }
+          g.live = !g.live;
+          if(g.live){
+            showToast(`🔴 Marked LIVE: ${teamLabel(g.teamXKey)} vs ${teamLabel(g.teamYKey)} — Court ${g.court}. Other viewers will see this within a few seconds.`, '🔴');
+          }
+          saveState();
+          render();
+        });
+      }
+
+      // challenge for rematch (each team gets exactly one, for the whole tournament) — Captain or Admin only
+      card.querySelectorAll('.rematch-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const teamKey = btn.getAttribute('data-team');
+          if(!isAdmin && !(isCaptain && myTeamKey === teamKey)) return;
+          requestRematch(g.id, teamKey);
+        });
+      });
+      const undoBtn = card.querySelector('.undo-rematch-btn');
+      if(undoBtn){
+        undoBtn.addEventListener('click', ()=>{
+          if(!isAdmin && !(isCaptain && myTeamKey === g.rematchedBy)) return;
+          showConfirmDialog('Undo this rematch challenge? The new match will be removed and the original result will count again.', ()=>{
+            undoRematch(g.id);
+          });
+        });
+      }
+      card.querySelectorAll('.undo-swap-btn').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const swapId = btn.getAttribute('data-swap-id');
+          const entry = g.swaps.find(s=>s.id===swapId);
+          if(!isAdmin && entry && !(isCaptain && myTeamKey === entry.team)) return;
+          showConfirmDialog('Undo this power swap? Both players will return to their original games.', ()=>{
+            undoSwap(g.id, swapId);
+          });
+        });
+      });
+
+      // score save
+      const saveScoreBtnEl = card.querySelector('.save-score-btn');
+      if(saveScoreBtnEl){
+        card.querySelectorAll('.score-input').forEach(inputEl=>{
+          inputEl.addEventListener('input', ()=>{
+            saveScoreBtnEl.textContent = 'Save Score';
+          });
+        });
+        saveScoreBtnEl.addEventListener('click', ()=>{
+          const xVal = card.querySelector('.score-input[data-side="x"]').value;
+          const yVal = card.querySelector('.score-input[data-side="y"]').value;
+          const wasDecisive = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+          g.scoreX = xVal===''? null : parseInt(xVal,10);
+          g.scoreY = yVal===''? null : parseInt(yVal,10);
+          const nowDecisive = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+          if(nowDecisive) g.live = false;
+          if(nowDecisive && !wasDecisive) playWinSound();
+          saveState();
+          render();
+          if(nowDecisive && !wasDecisive){
+            const winnerKey = g.scoreX > g.scoreY ? g.teamXKey : g.teamYKey;
+            const isMyTeamWin = myTeamKey && winnerKey === myTeamKey;
+            const nextGame = findNextSameCourtGame(g.court, round.roundNum);
+            if(isMyTeamWin){
+              const winners = winnerKey === g.teamXKey ? g.x : g.y;
+              const losers = winnerKey === g.teamXKey ? g.y : g.x;
+              playTone(783.99, 0, 0.12, 0.18, 'triangle');
+              playTone(987.77, 0.1, 0.12, 0.18, 'triangle');
+              playTone(1174.66, 0.2, 0.25, 0.2, 'triangle');
+              showToast(`🎉 ${teamLabel(myTeamKey)} won! ${winners.join(' & ')} beat ${losers.join(' & ')} on Court ${g.court}.`, '🎉');
+              if(nextGame){
+                setTimeout(()=>{
+                  showToast(`Court ${g.court} is up next: ${teamLabel(nextGame.teamXKey)} vs ${teamLabel(nextGame.teamYKey)}`, '➡️');
+                  scrollAndFlash([nextGame.id]);
+                }, 4700);
+              }
+            } else if(nextGame){
+              showToast(`Court ${g.court} is up next: ${teamLabel(nextGame.teamXKey)} vs ${teamLabel(nextGame.teamYKey)}`, '➡️');
+              setTimeout(()=>{ scrollAndFlash([nextGame.id]); }, 150);
+            }
+          }
+        });
+      }
+
+      // undo a Final match result entirely (Admin only) — clears the score and reopens the game
+      const undoMatchBtn = card.querySelector('.undo-match-btn');
+      if(undoMatchBtn){
+        undoMatchBtn.addEventListener('click', ()=>{
+          if(!isAdmin) return;
+          showConfirmDialog('Undo this match result? The score will be cleared and this game goes back to Upcoming. This can affect standings, battle results, and any rematch challenge tied to this game. Continue?', ()=>{
+            undoMatchScore(g.id);
+          });
+        });
+      }
+
+      // swap picker on player name click — always a Swap (trade) between two currently-scheduled players
+      card.querySelectorAll('.pname').forEach(el=>{
+        el.addEventListener('click', (e)=>{
+          e.stopPropagation();
+          const side = el.getAttribute('data-side');
+          const idx = parseInt(el.getAttribute('data-idx'),10);
+          const teamKey = side==='x' ? g.teamXKey : g.teamYKey;
+          const currentName = g[side][idx];
+          if(!isAdmin && !(isCaptain && myTeamKey === teamKey)) return;
+          if(g.rematchOf){ alert('This is a rematch game — players cannot be swapped in or out of a rematch.'); return; }
+          if(done){ alert('This game is already Final — you can only swap players in a game that has not been scored yet.'); return; }
+          if(state.swaps[teamKey] <= 0){ alert(`${teamLabel(teamKey)} has no power swaps left.`); return; }
+          const excl = [...g.x, ...g.y];
+
+          const swapCandidates = state.config[teamKey].players
+            .map(p=>p.name)
+            .filter(n => !excl.includes(n));
+          if(swapCandidates.length===0){ alert('No eligible teammates to swap with.'); return; }
+
+          const picker = document.createElement('div');
+          picker.className = 'swap-picker';
+
+          function renderMainLevel(){
+            const optsHtml = swapCandidates.map(n=>{
+              const gameCount = getPlayerGames(n).filter(gm=>!gm.done && !gm.isRematch).length;
+              return `<div class="opt" data-name="${n}">🔁 Swap with ${n} <span style="opacity:0.5;">(${gameCount} pending) ▸</span></div>`;
+            }).join('');
+            picker.innerHTML = `<span class="close-x">✕</span>
+              <div style="font-size:10px; opacity:0.5; padding:4px 8px; text-transform:uppercase; letter-spacing:0.06em;">Swap — pick a teammate</div>
+              ${optsHtml}`;
+            picker.querySelector('.close-x').addEventListener('click', (ev)=>{ ev.stopPropagation(); picker.remove(); });
+            picker.querySelectorAll('.opt').forEach(optEl=>{
+              optEl.addEventListener('click', (ev)=>{
+                ev.stopPropagation();
+                renderGameLevel(optEl.getAttribute('data-name'));
+              });
+            });
+          }
+
+          function renderGameLevel(candidateName){
+            const games = getPlayerGames(candidateName).filter(gm=>!gm.done && !gm.isRematch);
+            const rowsHtml = games.length
+              ? games.map(gm=>`
+                  <div class="opt" data-game="${gm.gameId}">
+                    vs ${gm.opponent} <span style="opacity:0.5;">— Round ${gm.roundNum} · Court ${gm.court} · ${to12h(gm.time)}</span>
+                  </div>
+                `).join('')
+              : `<div style="padding:8px; font-size:12px; opacity:0.6;">${candidateName} has no eligible pending games to swap — their remaining games are either already Final or are rematch games (which can't be swapped).</div>`;
+            picker.innerHTML = `<span class="close-x">✕</span>
+              <div class="opt" data-back="1" style="color:var(--sun-yellow);">◂ Back</div>
+              <div style="font-size:10px; opacity:0.5; padding:4px 8px; text-transform:uppercase; letter-spacing:0.06em;">Which of ${candidateName}'s pending games?</div>
+              ${rowsHtml}`;
+            picker.querySelector('.close-x').addEventListener('click', (ev)=>{ ev.stopPropagation(); picker.remove(); });
+            picker.querySelector('[data-back]').addEventListener('click', (ev)=>{ ev.stopPropagation(); renderMainLevel(); });
+            picker.querySelectorAll('.opt[data-game]').forEach(optEl=>{
+              optEl.addEventListener('click', (ev)=>{
+                ev.stopPropagation();
+                doTradeSwap(round.roundNum, g.id, side, idx, candidateName, optEl.getAttribute('data-game'));
+              });
+            });
+          }
+
+          renderMainLevel();
+          document.querySelectorAll('.swap-picker').forEach(p=>p.remove());
+          card.appendChild(picker);
+        });
+      });
+
+      gamesRow.appendChild(card);
+    });
+    block.appendChild(gamesRow);
+    container.appendChild(block);
+  });
+
+  document.addEventListener('click', ()=>{ document.querySelectorAll('.swap-picker').forEach(p=>p.remove()); }, {once:true});
+}
+
+function renderStandings(){
+  const {battle, teamStats, allComplete, matchupKeys} = computeStandings();
+  const battlesContainer = document.getElementById('battlesContainer');
+  battlesContainer.innerHTML = '';
+
+  matchupKeys.forEach(mk=>{
+    const b = battle[mk];
+    const xLead = b.winsX > b.winsY;
+    const yLead = b.winsY > b.winsX;
+    const div = document.createElement('div');
+    div.className = 'card battle-card';
+    div.innerHTML = `
+      <div class="battle-title">${teamLabel(b.teamXKey)} <span style="color:rgba(245,241,228,0.4)">battle</span> ${teamLabel(b.teamYKey)}</div>
+      <div class="battle-score">
+        <div class="${xLead?'win':''}"><div class="num">${b.winsX}</div><div class="team">${teamLabel(b.teamXKey)}</div></div>
+        <div style="opacity:0.4; font-family:'Space Mono',monospace;">${b.played}/${b.total} played</div>
+        <div class="${yLead?'win':''}" style="text-align:right;"><div class="num">${b.winsY}</div><div class="team">${teamLabel(b.teamYKey)}</div></div>
+      </div>
+      <div class="progress-bar">
+        <div class="fillx" style="width:${b.total? (b.winsX/b.total*100):0}%"></div>
+        <div class="filly" style="width:${b.total? (b.winsY/b.total*100):0}%"></div>
+      </div>
+    `;
+    battlesContainer.appendChild(div);
+  });
+
+  const rows = Object.keys(state.config).map(k=>({key:k, ...teamStats[k]}))
+    .sort((a,b)=> b.battlePts-a.battlePts || b.gamesWon-a.gamesWon || b.pointsScored-a.pointsScored);
+
+  const tbody = document.getElementById('standingsBody');
+  const maxBattlePts = (Object.keys(state.config).length - 1) * 1;
+  tbody.innerHTML = rows.map((r,i)=>`
+    <tr class="${i===0 && r.battlePts>0 ? 'leader':''}">
+      <td><span class="rank-badge">${i+1}</span></td>
+      <td style="color:${TEAM_ACCENT[r.key]}">${teamLabel(r.key)}</td>
+      <td>${r.battlePts} / ${maxBattlePts}</td>
+      <td>${r.gamesWon}</td>
+      <td>${r.pointsScored}</td>
+    </tr>
+  `).join('');
+
+  const championWrap = document.getElementById('championWrap');
+  if(allComplete){
+    const champ = rows[0];
+    const isFirstReveal = !championSoundPlayedThisSession;
+    if(isFirstReveal){
+      championSoundPlayedThisSession = true;
+      playChampionSound();
+    }
+    championWrap.innerHTML = `
+      <div class="champion-banner" id="championBannerEl">
+        <div class="cup">🏆</div>
+        <h2>${teamLabel(champ.key)} is the Overall Champion!</h2>
+        <p>${champ.battlePts} battle points · ${champ.gamesWon} games won · ${champ.pointsScored} points scored</p>
+      </div>
+    `;
+    if(isFirstReveal) spawnConfetti(document.getElementById('championBannerEl'));
+  } else {
+    championSoundPlayedThisSession = false;
+    championWrap.innerHTML = '';
+  }
+}
+
+function computePlayerWins(){
+  const allGames = state.schedule.flatMap(r=>r.games);
+  const wins = {};
+  allGames.forEach(g=>{
+    if(g.rematched) return; // win is on hold pending the rematch decision
+    if(g.scoreX==null || g.scoreY==null || g.scoreX===g.scoreY) return;
+    const winners = g.scoreX>g.scoreY ? g.x : g.y;
+    winners.forEach(n=>{ wins[n] = (wins[n]||0) + 1; });
+  });
+  return wins;
+}
+
+function renderLeaderboard(){
+  const container = document.getElementById('leaderboardContainer');
+  const wins = computePlayerWins();
+  const maxWins = Math.max(1, ...Object.values(wins), 0);
+
+  container.innerHTML = Object.keys(state.config).map(key=>{
+    const team = state.config[key];
+    const rows = team.players.map(p=>({name:p.name, wins: wins[p.name] || 0}))
+      .sort((a,b)=> b.wins - a.wins);
+    const teamTotalWins = rows.reduce((s,r)=>s+r.wins, 0);
+    const rowsHtml = rows.map(r=>`
+      <div class="win-row">
+        <span class="pname-label">${r.name}</span>
+        <span style="display:flex; align-items:center; gap:10px;">
+          <span class="win-bar-track"><span class="win-bar-fill" style="width:${(r.wins/maxWins*100)}%; background:${TEAM_ACCENT[key]};"></span></span>
+          <span class="wins-count" style="color:${TEAM_ACCENT[key]}">${r.wins}</span>
+        </span>
+      </div>
+    `).join('');
+    return `
+      <details class="team-collapsible">
+        <summary>
+          <span style="color:${TEAM_ACCENT[key]}">${teamLabel(key)}</span>
+          <span style="display:flex; align-items:center; gap:10px;">
+            <span class="court-tag" style="font-family:'Space Mono',monospace;">${teamTotalWins} total wins</span>
+            <span class="chevron">▶</span>
+          </span>
+        </summary>
+        ${rowsHtml}
+      </details>
+    `;
+  }).join('');
+}
+
+function renderSwapTracker(){
+  const tracker = document.getElementById('swapTracker');
+  tracker.innerHTML = Object.keys(state.config).map(k=>`
+    <div class="swap-pill">
+      <span style="color:${TEAM_ACCENT[k]}">${teamLabel(k)}</span>
+      <span><b>${state.swaps[k]}</b> / ${state.swaps.cap} swaps left</span>
+    </div>
+  `).join('');
+}
+
+function renderChallengeTracker(){
+  const tracker = document.getElementById('challengeTracker');
+  if(!state.challenges){ state.challenges = { cap: 1 }; Object.keys(state.config).forEach(k=>{ state.challenges[k] = 1; }); }
+  tracker.innerHTML = Object.keys(state.config).map(k=>`
+    <div class="swap-pill">
+      <span style="color:${TEAM_ACCENT[k]}">${teamLabel(k)}</span>
+      <span><b>${state.challenges[k] ?? 0}</b> / ${state.challenges.cap} challenge${state.challenges.cap===1?'':'s'} left</span>
+    </div>
+  `).join('');
+}
+
+/* ---------------- player search ---------------- */
+let playerSearchQuery = '';
+let activeGameFilter = null; // {ids: [...], label: 'Next Games'} or null to show everything
+
+function applyGameFilter(){
+  const banner = document.getElementById('gameFilterBanner');
+  const textEl = document.getElementById('gameFilterText');
+  const cards = document.querySelectorAll('.game-card');
+  if(!activeGameFilter){
+    if(banner) banner.style.display = 'none';
+    document.querySelectorAll('.round-block').forEach(b=>{ b.style.display = ''; });
+    cards.forEach(c=>{ c.style.display = ''; });
+    return;
+  }
+  const idSet = new Set(activeGameFilter.ids);
+  cards.forEach(c=>{
+    const gid = c.id.replace(/^game-/, '');
+    c.style.display = idSet.has(gid) ? '' : 'none';
+  });
+  document.querySelectorAll('.round-block').forEach(block=>{
+    const visible = Array.from(block.querySelectorAll('.game-card')).some(c=>c.style.display !== 'none');
+    block.style.display = visible ? '' : 'none';
+  });
+  if(banner){
+    banner.style.display = 'flex';
+    textEl.textContent = `Showing ${activeGameFilter.label} only (${activeGameFilter.ids.length})`;
+  }
+}
+function clearPlayerSearchUI(){
+  playerSearchQuery = '';
+  const inputEl = document.getElementById('playerSearchInput');
+  if(inputEl) inputEl.value = '';
+  const countEl = document.getElementById('playerSearchCount');
+  if(countEl) countEl.textContent = '';
+  const clearBtn = document.getElementById('playerSearchClearBtn');
+  if(clearBtn) clearBtn.style.display = 'none';
+}
+document.getElementById('gameFilterClearBtn').addEventListener('click', ()=>{
+  clearPlayerSearchUI();
+  activeGameFilter = null;
+  applyGameFilter();
+});
+
+
+function applyPlayerSearchHighlight(){
+  const query = playerSearchQuery;
+  const countEl = document.getElementById('playerSearchCount');
+  const clearBtn = document.getElementById('playerSearchClearBtn');
+  if(clearBtn) clearBtn.style.display = query ? '' : 'none';
+
+  if(!query){
+    // clearing search: also drop any search-driven filter
+    if(activeGameFilter && activeGameFilter.isSearch){ activeGameFilter = null; }
+    applyGameFilter();
+    if(countEl) countEl.textContent = '';
+    return;
+  }
+
+  const matchIds = [];
+  document.querySelectorAll('.game-card').forEach(card=>{
+    const players = card.dataset.players || '';
+    if(players.includes(query)) matchIds.push(card.id.replace(/^game-/, ''));
+  });
+  if(countEl) countEl.textContent = `${matchIds.length} game${matchIds.length===1?'':'s'} found`;
+  activeGameFilter = { ids: matchIds, label: `"${playerSearchInputEl.value.trim()}" matches`, isSearch: true };
+  applyGameFilter();
+}
+
+const playerSearchInputEl = document.getElementById('playerSearchInput');
+if(playerSearchInputEl){
+  playerSearchInputEl.addEventListener('input', (e)=>{
+    playerSearchQuery = e.target.value.trim().toLowerCase();
+    applyPlayerSearchHighlight();
+    if(playerSearchQuery && activeGameFilter && activeGameFilter.ids.length){
+      const firstMatch = document.getElementById(`game-${activeGameFilter.ids[0]}`);
+      if(firstMatch) firstMatch.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+}
+document.getElementById('playerSearchClearBtn').addEventListener('click', ()=>{
+  playerSearchQuery = '';
+  playerSearchInputEl.value = '';
+  applyPlayerSearchHighlight();
+});
+
+/* ---------------- background sync ---------------- */
+// Firebase's REST streaming endpoint pushes updates to every connected client in real time,
+// so everyone converges to the same data within a fraction of a second of any change.
+function findNewlyLiveGames(oldState, newState){
+  if(!newState || !newState.schedule) return [];
+  const oldLiveIds = new Set();
+  if(oldState && oldState.schedule){
+    oldState.schedule.forEach(r=>r.games.forEach(g=>{ if(g.live) oldLiveIds.add(g.id); }));
+  }
+  const newlyLive = [];
+  newState.schedule.forEach(r=>r.games.forEach(g=>{
+    if(g.live && !oldLiveIds.has(g.id)) newlyLive.push(g);
+  }));
+  return newlyLive;
+}
+
+function findNewlyFinishedGames(oldState, newState){
+  if(!newState || !newState.schedule) return [];
+  const oldDoneIds = new Set();
+  if(oldState && oldState.schedule){
+    oldState.schedule.forEach(r=>r.games.forEach(g=>{
+      if(g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY) oldDoneIds.add(g.id);
+    }));
+  }
+  const newlyFinished = [];
+  newState.schedule.forEach(r=>r.games.forEach(g=>{
+    const isDone = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+    if(isDone && !oldDoneIds.has(g.id)) newlyFinished.push({game:g, roundNum:r.roundNum});
+  }));
+  return newlyFinished;
+}
+
+function findNewSwapEvents(oldState, newState){
+  if(!newState || !newState.schedule) return [];
+  const oldIds = new Set();
+  if(oldState && oldState.schedule){
+    oldState.schedule.forEach(r=>r.games.forEach(g=>(g.swaps||[]).forEach(s=>oldIds.add(s.id))));
+  }
+  const events = [];
+  const seen = new Set();
+  newState.schedule.forEach(r=>r.games.forEach(g=>(g.swaps||[]).forEach(s=>{
+    if(!oldIds.has(s.id) && !seen.has(s.id)){
+      seen.add(s.id);
+      events.push({ team:s.team, from:s.from, to:s.to, roundNum:r.roundNum, court:g.court });
+    }
+  })));
+  return events;
+}
+
+function findNewChallengeEvents(oldState, newState){
+  if(!newState || !newState.schedule) return [];
+  const oldRematchedIds = new Set();
+  if(oldState && oldState.schedule){
+    oldState.schedule.forEach(r=>r.games.forEach(g=>{ if(g.rematched) oldRematchedIds.add(g.id); }));
+  }
+  const events = [];
+  newState.schedule.forEach(r=>r.games.forEach(g=>{
+    if(g.rematched && !oldRematchedIds.has(g.id)){
+      events.push({ team:g.rematchedBy, roundNum:r.roundNum, court:g.court, matchup:g.matchup, teamXKey:g.teamXKey, teamYKey:g.teamYKey });
+    }
+  }));
+  return events;
+}
+
+function playScheduleReadySound(){
+  const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5]; // C5 E5 G5 C6 E6 — bright ascending fanfare
+  notes.forEach((f,i)=> playTone(f, i*0.11, 0.3, 0.18, 'triangle'));
+}
+function celebrateScheduleReady(){
+  playScheduleReadySound();
+  showToast('🎉 The match schedule is ready! Check out your games.', '🎉');
+  // if someone was sitting on the welcome/login screens waiting, bring them in automatically —
+  // but don't yank them out of Queuing, that's an unrelated task they're actively doing
+  const onWelcome = document.getElementById('welcomeScreen').style.display !== 'none';
+  const onRole = document.getElementById('roleScreen').style.display !== 'none';
+  if(onWelcome || onRole){
+    showTournamentApp();
+    setTimeout(()=>{
+      const scheduleSection = document.getElementById('scheduleSection');
+      if(scheduleSection) scheduleSection.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 300);
+  }
+}
+
+function handleRemoteUpdate(newData){
+  // don't yank the state out from under someone mid-interaction (a swap picker open, etc.)
+  if(document.querySelector('.swap-picker') || document.querySelector('.confirm-overlay')) return;
+
+  const remoteStr = newData ? JSON.stringify(newData) : null;
+  // skip if this update is just an echo of the change we ourselves just wrote
+  if(remoteStr && remoteStr === lastWrittenSnapshot) {
+    if(!state){ state = newData; lastKnownRev = (newData && typeof newData.rev === 'number') ? newData.rev : null; render(); }
+    return;
+  }
+
+  const localStr = state ? JSON.stringify(state) : null;
+  if(remoteStr && remoteStr !== localStr){
+    const oldState = state;
+    state = newData;
+    lastKnownRev = (newData && typeof newData.rev === 'number') ? newData.rev : null;
+    render();
+    if(!oldState && state){
+      celebrateScheduleReady();
+    }
+    const newlyLive = findNewlyLiveGames(oldState, state);
+    const newlyFinished = findNewlyFinishedGames(oldState, state);
+    const newSwapsRaw = findNewSwapEvents(oldState, state);
+    const newChallengesRaw = findNewChallengeEvents(oldState, state);
+    const myWin = myTeamKey
+      ? newlyFinished.find(({game})=> (game.scoreX > game.scoreY ? game.teamXKey : game.teamYKey) === myTeamKey)
+      : null;
+
+    const celebrateMyWin = ()=>{
+      const g = myWin.game;
+      const winnerKey = g.scoreX > g.scoreY ? g.teamXKey : g.teamYKey;
+      const winners = winnerKey === g.teamXKey ? g.x : g.y;
+      const losers = winnerKey === g.teamXKey ? g.y : g.x;
+      playTone(783.99, 0, 0.12, 0.18, 'triangle');
+      playTone(987.77, 0.1, 0.12, 0.18, 'triangle');
+      playTone(1174.66, 0.2, 0.25, 0.2, 'triangle');
+      showToast(`🎉 ${teamLabel(myTeamKey)} won! ${winners.join(' & ')} beat ${losers.join(' & ')} on Court ${g.court}.`, '🎉');
+      setTimeout(()=>{ scrollAndFlash([g.id]); }, 150);
+    };
+
+    if(isAdmin){
+      // Admin only sees swap/challenge activity from any team — no generic live/next-up noise
+      if(newSwapsRaw.length > 0){
+        const s = newSwapsRaw[0];
+        showToast(`⚡ ${teamLabel(s.team)} made a power swap: ${s.from} ↔ ${s.to} (Round ${s.roundNum}, Court ${s.court})`, '⚡');
+      } else if(newChallengesRaw.length > 0){
+        const c = newChallengesRaw[0];
+        showToast(`🔄 ${teamLabel(c.team)} used their rematch challenge (Round ${c.roundNum}, Court ${c.court})`, '🔄');
+      }
+    } else if(myTeamKey && isCaptain){
+      // Team Captain: only their own team's wins, plus swaps/challenges made by OTHER teams
+      if(myWin){
+        celebrateMyWin();
+      } else {
+        const otherSwap = newSwapsRaw.find(s => s.team !== myTeamKey);
+        const otherChallenge = newChallengesRaw.find(c => c.team !== myTeamKey);
+        if(otherSwap){
+          showToast(`⚡ ${teamLabel(otherSwap.team)} made a power swap: ${otherSwap.from} ↔ ${otherSwap.to} (Round ${otherSwap.roundNum}, Court ${otherSwap.court})`, '⚡');
+        } else if(otherChallenge){
+          showToast(`🔄 ${teamLabel(otherChallenge.team)} used their rematch challenge (Round ${otherChallenge.roundNum}, Court ${otherChallenge.court})`, '🔄');
+        }
+      }
+    } else if(myTeamKey){
+      // Team Player (not Captain): own team's wins, plus any team's swaps/challenges (including their own)
+      if(myWin){
+        celebrateMyWin();
+      } else if(newSwapsRaw.length > 0){
+        const s = newSwapsRaw[0];
+        showToast(`⚡ ${teamLabel(s.team)} made a power swap: ${s.from} ↔ ${s.to} (Round ${s.roundNum}, Court ${s.court})`, '⚡');
+      } else if(newChallengesRaw.length > 0){
+        const c = newChallengesRaw[0];
+        showToast(`🔄 ${teamLabel(c.team)} used their rematch challenge (Round ${c.roundNum}, Court ${c.court})`, '🔄');
+      }
+    } else {
+      // no role selected: no notifications at all — silent unless you pick a role
+    }
+  } else if(!remoteStr && state){
+    // someone reset the tournament elsewhere
+    state = null;
+    lastKnownRev = null;
+    render();
+  }
+}
+
+let liveEventSource = null;
+let pollFallbackTimer = null;
+async function pollForUpdates(){
+  // Safety net alongside the SSE stream above: if the realtime connection silently drops or
+  // misses an update, this periodic re-fetch catches it up within a few seconds, so standings,
+  // Battle Pts, and everything else stay live even without a manual refresh.
+  try{
+    const res = await fetch(DB_ENDPOINT);
+    if(!res.ok) return;
+    const data = await res.json();
+    handleRemoteUpdate(data);
+  }catch(e){ /* silent — SSE is the primary path, this is just a backup */ }
+}
+function startPollFallback(){
+  if(pollFallbackTimer) return;
+  pollFallbackTimer = setInterval(pollForUpdates, 8000);
+}
+function startRealtimeSync(){
+  if(liveEventSource) return;
+  try{
+    liveEventSource = new EventSource(DB_ENDPOINT);
+    liveEventSource.addEventListener('put', (e)=>{
+      try{
+        const payload = JSON.parse(e.data);
+        // Firebase sends the full value at path "/" on connect and on every top-level write
+        if(payload.path === '/'){ handleRemoteUpdate(payload.data); }
+      }catch(err){ console.error('realtime update parse error', err); }
+    });
+    liveEventSource.addEventListener('patch', (e)=>{
+      // shouldn't normally happen since this app always writes the whole object, but
+      // handle gracefully by doing a fresh fetch rather than trying to apply a partial patch
+      loadState();
+    });
+    liveEventSource.onerror = ()=>{
+      // EventSource auto-reconnects on its own; nothing else to do here
+    };
+  }catch(e){
+    console.error('could not start realtime sync', e);
+  }
+  startPollFallback();
+}
+
+/* ---------------- init ---------------- */
+renderTeamsGrid();
+const hadSessionRole = restoreSessionRole(); // read here (before render() calls need it); acted on later, once showTournamentApp() is defined
+renderAdminBar();
+loadState();
+startRealtimeSync();
+</script>
+
+<div id="quickNavMenu" class="quick-nav-menu hidden">
+  <button data-target="introHero">↑ Intro</button>
+  <button data-target="scheduleSection">📅 Match Schedule</button>
+  <button data-target="standingsSection">🏆 Team Battles</button>
+  <button data-target="swapSection">⚡ Power Plays</button>
+  <button data-action="playing">🔴 Playing Now</button>
+  <button data-action="next">▶️ Next Games</button>
+  <button data-action="myteam">🏸 My Team Matches</button>
+</div>
+<button class="back-to-intro" id="quickNavToggleBtn" title="Jump to a section">🧭 Jump to</button>
+<button class="back-to-intro" id="soundToggleBtn" title="Toggle sound" style="right:auto; left:20px; bottom:20px;">🔊 Sound</button>
+<script>
+document.getElementById('quickNavToggleBtn').addEventListener('click', (e)=>{
+  e.stopPropagation();
+  document.getElementById('quickNavMenu').classList.toggle('hidden');
+});
+document.querySelectorAll('#quickNavMenu button[data-target]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const targetId = btn.getAttribute('data-target');
+    if(activeGameFilter){
+      clearPlayerSearchUI();
+      activeGameFilter = null;
+      applyGameFilter();
+    }
+    const target = document.getElementById(targetId);
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    document.getElementById('quickNavMenu').classList.add('hidden');
+  });
+});
+function findLiveGames(){
+  if(!state || !state.schedule) return [];
+  const live = [];
+  state.schedule.forEach(r=>r.games.forEach(g=>{ if(g.live) live.push(g); }));
+  return live;
+}
+function findNextGamesPerCourt(){
+  if(!state || !state.schedule) return [];
+  const courts = new Set();
+  state.schedule.forEach(r=>r.games.forEach(g=>courts.add(g.court)));
+  const sorted = [...state.schedule].sort((a,b)=>a.roundNum-b.roundNum);
+  const nextGames = [];
+  courts.forEach(court=>{
+    for(const r of sorted){
+      const g = r.games.find(g=>g.court===court);
+      if(g){
+        const done = g.scoreX!=null && g.scoreY!=null && g.scoreX!==g.scoreY;
+        if(!done && !g.live){ nextGames.push(g); break; }
+      }
+    }
+  });
+  return nextGames;
+}
+document.querySelectorAll('#quickNavMenu button[data-action]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('quickNavMenu').classList.add('hidden');
+    const action = btn.getAttribute('data-action');
+    if(!state){ alert('No tournament yet — generate a schedule first.'); return; }
+    if(action === 'playing'){
+      const live = findLiveGames();
+      if(live.length === 0){ alert('No games are currently marked Live.'); return; }
+      clearPlayerSearchUI();
+      activeGameFilter = { ids: live.map(g=>g.id), label: 'Playing Now' };
+      applyGameFilter();
+      document.getElementById('scheduleSection').scrollIntoView({behavior:'smooth', block:'start'});
+    } else if(action === 'next'){
+      const next = findNextGamesPerCourt();
+      if(next.length === 0){ alert('No upcoming games left — the tournament looks complete!'); return; }
+      clearPlayerSearchUI();
+      activeGameFilter = { ids: next.map(g=>g.id), label: 'Next Games' };
+      applyGameFilter();
+      document.getElementById('scheduleSection').scrollIntoView({behavior:'smooth', block:'start'});
+    } else if(action === 'myteam'){
+      if(!myTeamKey){
+        alert('Pick your team first using the "🔔 Get notified when your team wins" dropdown near the top, then try this again.');
+        return;
+      }
+      const myGames = [];
+      state.schedule.forEach(r=>r.games.forEach(g=>{
+        if(g.teamXKey === myTeamKey || g.teamYKey === myTeamKey) myGames.push(g);
+      }));
+      if(myGames.length === 0){ alert(`No games found for ${teamLabel(myTeamKey)}.`); return; }
+      clearPlayerSearchUI();
+      activeGameFilter = { ids: myGames.map(g=>g.id), label: `${teamLabel(myTeamKey)} Matches` };
+      applyGameFilter();
+      document.getElementById('scheduleSection').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  });
+});
+document.addEventListener('click', (e)=>{
+  const menu = document.getElementById('quickNavMenu');
+  if(!menu.classList.contains('hidden') && !menu.contains(e.target) && e.target.id !== 'quickNavToggleBtn'){
+    menu.classList.add('hidden');
+  }
+});
+document.getElementById('soundToggleBtn').addEventListener('click', ()=>{
+  soundEnabled = !soundEnabled;
+  const btn = document.getElementById('soundToggleBtn');
+  btn.textContent = soundEnabled ? '🔊 Sound' : '🔇 Muted';
+  if(soundEnabled) getAudioCtx();
+});
+</script>
+</div><!-- /appContent -->
+
+<div id="queuingScreen" class="welcome-screen" style="display:none; align-items:flex-start;">
+  <button class="welcome-back-btn" id="queuingBackBtn">🏠 Home</button>
+  <div style="width:100%; text-align:center;">
+    <div class="welcome-eyebrow">Every Sunday Queue</div>
+    <h1 class="welcome-title" style="font-size:clamp(24px,6vw,40px);">Queuing</h1>
+  </div>
+  <div style="max-width:700px; width:100%; text-align:left; margin:0 auto;">
+    <div class="control-group" style="margin-bottom:16px;">
+      <label>Date</label>
+      <input type="date" id="queuingDateInput">
+    </div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="section-sub" style="margin-bottom:12px;">Sign up for a spot — first come, first served</div>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;">
+        <input type="text" id="queuingNameInput" placeholder="Your name"
+          style="flex:1; min-width:140px; background:rgba(255,255,255,0.06); border:1px solid var(--line-faint); border-radius:8px; padding:10px 12px; color:var(--line-cream); font-size:14px;">
+        <select id="queuingSkillSelect"
+          style="background:rgba(255,255,255,0.06); border:1px solid var(--line-faint); border-radius:8px; padding:10px 12px; color:var(--line-cream); font-size:14px;">
+          <option value="Beginner">Beginner</option>
+          <option value="Advanced Beginner">Advanced Beginner</option>
+          <option value="Intermediate" selected>Intermediate</option>
+          <option value="Advanced Intermediate">Advanced Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+        <button class="btn small" id="queuingSignupBtn">Sign Up</button>
+      </div>
+      <div id="queuingListContainer"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="section-head" style="margin-bottom:0;">
+        <div>
+          <div class="section-title" style="font-size:18px;">Doubles Matchups</div>
+          <div class="section-sub">Pulls the next 4 waiting players in order, paired to balance skill level</div>
+        </div>
+        <button class="btn small" id="generateQueueMatchupBtn">🏸 Generate Matchup</button>
+      </div>
+      <div id="queuingMatchupsContainer" style="margin-top:14px;"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title" style="font-size:18px; margin-bottom:4px;">Player Wins</div>
+      <div class="section-sub" style="margin-bottom:12px;">Across all doubles matchups played today</div>
+      <div id="queuingWinsContainer"></div>
+    </div>
+
+    <div class="card" style="margin-top:20px; text-align:center;">
+      <div class="section-sub" style="margin-bottom:12px;">Once all of today's games are done, save this date's results and start a fresh queue for next time.</div>
+      <button class="btn coral" id="queuingArchiveBtn">💾 Save Date & Start New Queue</button>
+    </div>
+
+    <div style="margin-top:20px;">
+      <details class="team-collapsible">
+        <summary>
+          <span style="color:var(--sun-yellow);">📅 Past Sessions</span>
+          <span class="chevron">▶</span>
+        </summary>
+        <div id="queuingHistoryList" style="padding:12px 18px; font-size:13px;">Loading…</div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Queuing (separate from tournament data) ---------------- */
+const QUEUING_DB_ENDPOINT = `${FIREBASE_URL}/smashSundayQueuing.json`;
+const QUEUING_HISTORY_BASE = `${FIREBASE_URL}/smashSundayQueuingHistory`;
+let queuingState = { date: '', signups: [] };
+let queuingLastWritten = null;
+
+function todayISO(){
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+async function archiveQueuingDate(){
+  const dateKey = queuingState.date || todayISO();
+  const totalGames = (queuingState.matchups||[]).filter(m=>m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB).length;
+  if(totalGames === 0 && (queuingState.matchups||[]).length === 0 && (queuingState.signups||[]).length === 0){
+    alert('Nothing to save yet — this queue is empty.');
+    return;
+  }
+  showConfirmDialog(`Save all results for ${dateKey} and start a fresh queue? This archives today's sign-ups, matchups, and wins, then clears the live queue for next time.`, async ()=>{
+    try{
+      const res = await fetch(`${QUEUING_HISTORY_BASE}/${dateKey.replace(/-/g,'_')}.json`, {
+        method: 'PUT',
+        body: JSON.stringify(queuingState),
+      });
+      if(!res.ok) throw new Error('HTTP '+res.status);
+    }catch(e){
+      alert('Could not save this date — check your connection and try again.');
+      return;
+    }
+    queuingState = { date: todayISO(), signups: [], matchups: [] };
+    queuingLastWritten = null;
+    renderQueuing();
+    await saveQueuingState();
+    showToast(`Saved ${dateKey} to Past Sessions — fresh queue started.`, '💾');
+    loadQueuingHistory();
+  });
+}
+document.getElementById('queuingArchiveBtn').addEventListener('click', archiveQueuingDate);
+
+let queuingHistoryLoaded = false;
+async function loadQueuingHistory(){
+  const listEl = document.getElementById('queuingHistoryList');
+  if(!listEl) return;
+  listEl.textContent = 'Loading…';
+  try{
+    const res = await fetch(`${QUEUING_HISTORY_BASE}.json`);
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    if(!data){
+      listEl.innerHTML = `<div style="opacity:0.6;">No saved sessions yet.</div>`;
+      return;
+    }
+    const dates = Object.keys(data).sort().reverse();
+    listEl.innerHTML = dates.map(key=>{
+      const session = data[key];
+      const dateLabel = key.replace(/_/g,'-');
+      const gamesPlayed = (session.matchups||[]).filter(m=>m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB).length;
+      const playerCount = new Set((session.matchups||[]).flatMap(m=>[...(m.teamA||[]), ...(m.teamB||[])])).size;
+      return `<div class="win-row"><span class="pname-label">${dateLabel}</span><span class="court-tag">${gamesPlayed} games · ${playerCount} players</span></div>`;
+    }).join('');
+  }catch(e){
+    listEl.innerHTML = `<div style="opacity:0.6;">Couldn't load past sessions right now.</div>`;
+  }
+}
+document.querySelector('#queuingHistoryList').closest('details').addEventListener('toggle', function(){
+  if(this.open && !queuingHistoryLoaded){
+    queuingHistoryLoaded = true;
+    loadQueuingHistory();
+  }
+});
+
+async function loadQueuingState(){
+  try{
+    const res = await fetch(QUEUING_DB_ENDPOINT);
+    if(res.ok){
+      const data = await res.json();
+      if(data){ queuingState = data; }
+    }
+  }catch(e){ console.error('queuing load failed', e); }
+  if(!queuingState.date) queuingState.date = todayISO();
+  if(!queuingState.signups) queuingState.signups = [];
+  if(!queuingState.matchups) queuingState.matchups = [];
+  renderQueuing();
+}
+
+async function saveQueuingState(){
+  try{
+    const body = JSON.stringify(queuingState);
+    const res = await fetch(QUEUING_DB_ENDPOINT, { method:'PUT', body });
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    queuingLastWritten = body;
+    return true;
+  }catch(e){
+    console.error('queuing save failed', e);
+    alert('Could not save — check your connection and try again.');
+    return false;
+  }
+}
+
+const SKILL_COLORS = {
+  'Beginner': '#5FC9E0',
+  'Advanced Beginner': '#3FBE7A',
+  'Intermediate': 'var(--sun-yellow)',
+  'Advanced Intermediate': 'var(--fiesta-coral)',
+  'Advanced': '#B983FF',
+};
+
+const SKILL_WEIGHT = {
+  'Beginner': 1, 'Advanced Beginner': 2, 'Intermediate': 3, 'Advanced Intermediate': 4, 'Advanced': 5,
+};
+
+function generateQueueMatchup(){
+  const all = queuingState.signups || [];
+  const available = all.filter(s=>!s.busy);
+  if(available.length < 4){
+    const busyCount = all.length - available.length;
+    alert(`Need at least 4 people free to play right now (currently ${available.length} free${busyCount ? `, ${busyCount} already on another court` : ''}).`);
+    return;
+  }
+  const group = available.slice(0, 4); // earliest arrivals among those not already playing
+  const sorted = [...group].sort((a,b)=> (SKILL_WEIGHT[b.skill]||3) - (SKILL_WEIGHT[a.skill]||3));
+  // pair strongest+weakest vs the middle two, for the closest balance within this group of 4
+  const teamA = [sorted[0], sorted[3]];
+  const teamB = [sorted[1], sorted[2]];
+  const matchup = {
+    id: `qm-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,
+    teamA: teamA.map(p=>p.name), teamB: teamB.map(p=>p.name),
+    teamASkills: teamA.map(p=>p.skill), teamBSkills: teamB.map(p=>p.skill),
+    scoreA: null, scoreB: null, time: Date.now(),
+  };
+  // mark these 4 as busy so they can't be double-booked onto another court while this game is unscored
+  group.forEach(p=>{ p.busy = true; });
+  if(!queuingState.matchups) queuingState.matchups = [];
+  queuingState.matchups.unshift(matchup);
+  renderQueuing();
+  saveQueuingState();
+}
+document.getElementById('generateQueueMatchupBtn').addEventListener('click', generateQueueMatchup);
+
+function saveQueueMatchupScore(matchupId, scoreA, scoreB){
+  const m = (queuingState.matchups||[]).find(x=>x.id===matchupId);
+  if(!m) return;
+  const wasDecisive = m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB;
+  m.scoreA = scoreA===''? null : parseInt(scoreA,10);
+  m.scoreB = scoreB===''? null : parseInt(scoreB,10);
+  const nowDecisive = m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB;
+  if(nowDecisive && !wasDecisive){
+    // game's over — free these 4 players up and send them to the back of the line for their next turn
+    const names = new Set([...m.teamA, ...m.teamB]);
+    const all = queuingState.signups || [];
+    const finishing = all.filter(s=>names.has(s.name));
+    const rest = all.filter(s=>!names.has(s.name));
+    finishing.forEach(p=>{ p.busy = false; });
+    queuingState.signups = [...rest, ...finishing];
+  }
+  renderQueuing();
+  saveQueuingState();
+}
+
+function computeQueuePlayerStats(){
+  const stats = {}; // name -> {wins, games}
+  const touch = (name) => { if(!stats[name]) stats[name] = {wins:0, games:0}; return stats[name]; };
+  (queuingState.matchups||[]).forEach(m=>{
+    if(m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB){
+      const winners = m.scoreA>m.scoreB ? m.teamA : m.teamB;
+      const losers = m.scoreA>m.scoreB ? m.teamB : m.teamA;
+      winners.forEach(n=>{ const s = touch(n); s.wins++; s.games++; });
+      losers.forEach(n=>{ const s = touch(n); s.games++; });
+    }
+  });
+  return stats;
+}
+
+function renderQueueMatchups(){
+  const container = document.getElementById('queuingMatchupsContainer');
+  if(!container) return;
+  const matchups = queuingState.matchups || [];
+  if(matchups.length === 0){
+    container.innerHTML = `<div style="font-size:13px; opacity:0.6; padding:8px 0;">No matchups yet — generate one once at least 4 people are waiting.</div>`;
+    return;
+  }
+  container.innerHTML = matchups.map(m=>{
+    const done = m.scoreA!=null && m.scoreB!=null && m.scoreA!==m.scoreB;
+    const winnerLabel = done ? (m.scoreA>m.scoreB ? m.teamA.join(' & ') : m.teamB.join(' & ')) : null;
+    const nameSpan = (name, skill, side, idx) => done
+      ? `${name} <span class="skilldots-inline">(${skill})</span>`
+      : `<span class="pname qm-pname" data-id="${m.id}" data-side="${side}" data-idx="${idx}">${name}</span> <span class="skilldots-inline">(${skill})</span>`;
+    return `
+      <div class="game-card" style="margin-bottom:12px; position:relative;">
+        <div class="game-top">
+          <span class="matchup-badge">🏸 Doubles</span>
+          <span class="court-tag">${done ? '✓ Final' : 'Pending — tap a name to swap'}</span>
+        </div>
+        <div class="side">
+          <div class="players">${nameSpan(m.teamA[0], m.teamASkills[0], 'teamA', 0)} & ${nameSpan(m.teamA[1], m.teamASkills[1], 'teamA', 1)}</div>
+          <input type="number" class="score-input qm-score-a" data-id="${m.id}" value="${m.scoreA ?? ''}" placeholder="0">
+        </div>
+        <div class="vs-label">VS</div>
+        <div class="side">
+          <div class="players">${nameSpan(m.teamB[0], m.teamBSkills[0], 'teamB', 0)} & ${nameSpan(m.teamB[1], m.teamBSkills[1], 'teamB', 1)}</div>
+          <input type="number" class="score-input qm-score-b" data-id="${m.id}" value="${m.scoreB ?? ''}" placeholder="0">
+        </div>
+        <div class="game-actions">
+          <span class="court-tag" style="color:var(--green-win);">${winnerLabel ? '🏆 '+winnerLabel : ''}</span>
+          <span style="display:flex; gap:8px;">
+            ${!done ? `<button class="btn small coral qm-cancel-btn" data-id="${m.id}">✕ Cancel Matchup</button>` : ''}
+            <button class="btn small secondary qm-save-btn" data-id="${m.id}">Save Score</button>
+          </span>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  container.querySelectorAll('.qm-save-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-id');
+      const scoreA = container.querySelector(`.qm-score-a[data-id="${id}"]`).value;
+      const scoreB = container.querySelector(`.qm-score-b[data-id="${id}"]`).value;
+      saveQueueMatchupScore(id, scoreA, scoreB);
+    });
+  });
+
+  container.querySelectorAll('.qm-cancel-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-id');
+      showConfirmDialog('Cancel this matchup? All 4 players go back to waiting in their original spot.', ()=>{
+        cancelQueueMatchup(id);
+      });
+    });
+  });
+
+  container.querySelectorAll('.qm-pname').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      openQueueSwapPicker(el, el.getAttribute('data-id'), el.getAttribute('data-side'), parseInt(el.getAttribute('data-idx'),10));
+    });
+  });
+}
+
+function cancelQueueMatchup(matchupId){
+  const m = (queuingState.matchups||[]).find(x=>x.id===matchupId);
+  if(!m) return;
+  const names = new Set([...m.teamA, ...m.teamB]);
+  (queuingState.signups||[]).forEach(s=>{ if(names.has(s.name)) s.busy = false; });
+  queuingState.matchups = queuingState.matchups.filter(x=>x.id!==matchupId);
+  renderQueuing();
+  saveQueuingState();
+}
+
+function openQueueSwapPicker(anchorEl, matchupId, side, idx){
+  document.querySelectorAll('.swap-picker').forEach(p=>p.remove());
+  const m = (queuingState.matchups||[]).find(x=>x.id===matchupId);
+  if(!m) return;
+  const currentName = m[side][idx];
+  const inMatchup = new Set([...m.teamA, ...m.teamB]);
+  const candidates = (queuingState.signups||[]).filter(s=>!s.busy && !inMatchup.has(s.name));
+  if(candidates.length === 0){ alert('No one else is free to swap in right now.'); return; }
+  const picker = document.createElement('div');
+  picker.className = 'swap-picker';
+  picker.innerHTML = `<span class="close-x">✕</span>` +
+    `<div style="font-size:10px; opacity:0.5; padding:4px 8px; text-transform:uppercase; letter-spacing:0.06em;">Swap ${currentName} for…</div>` +
+    candidates.map(c=>`<div class="opt" data-name="${c.name}">${c.name} <span style="opacity:0.5;">(${c.skill})</span></div>`).join('');
+  picker.querySelector('.close-x').addEventListener('click', (ev)=>{ ev.stopPropagation(); picker.remove(); });
+  picker.querySelectorAll('.opt').forEach(optEl=>{
+    optEl.addEventListener('click', (ev)=>{
+      ev.stopPropagation();
+      const newName = optEl.getAttribute('data-name');
+      const newPlayer = (queuingState.signups||[]).find(s=>s.name===newName);
+      // swap in the schedule/matchup
+      m[side][idx] = newName;
+      const skillsKey = side === 'teamA' ? 'teamASkills' : 'teamBSkills';
+      m[skillsKey][idx] = newPlayer ? newPlayer.skill : m[skillsKey][idx];
+      // free the outgoing player, mark the incoming one busy
+      const outgoingPlayer = (queuingState.signups||[]).find(s=>s.name===currentName);
+      if(outgoingPlayer) outgoingPlayer.busy = false;
+      if(newPlayer) newPlayer.busy = true;
+      picker.remove();
+      renderQueuing();
+      saveQueuingState();
+    });
+  });
+  anchorEl.closest('.game-card').appendChild(picker);
+  document.addEventListener('click', ()=>{ document.querySelectorAll('.swap-picker').forEach(p=>p.remove()); }, {once:true});
+}
+
+function renderQueueWins(){
+  const container = document.getElementById('queuingWinsContainer');
+  if(!container) return;
+  const stats = computeQueuePlayerStats();
+  const entries = Object.entries(stats).sort((a,b)=> b[1].wins - a[1].wins || (b[1].wins/b[1].games) - (a[1].wins/a[1].games));
+  if(entries.length === 0){
+    container.innerHTML = `<div style="font-size:13px; opacity:0.6;">No completed matchups yet.</div>`;
+    return;
+  }
+  container.innerHTML = `
+    <table class="standings">
+      <thead><tr><th>Player</th><th>Games</th><th>Wins</th><th>Win %</th></tr></thead>
+      <tbody>
+        ${entries.map(([name, s])=>{
+          const pct = s.games > 0 ? Math.round((s.wins / s.games) * 100) : 0;
+          return `<tr>
+            <td>${name}</td>
+            <td>${s.games}</td>
+            <td style="color:var(--sun-yellow);">${s.wins}</td>
+            <td>${pct}%</td>
+          </tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+function renderQueuing(){
+  const dateInput = document.getElementById('queuingDateInput');
+  if(dateInput && dateInput.value !== queuingState.date) dateInput.value = queuingState.date;
+  const listEl = document.getElementById('queuingListContainer');
+  if(listEl){
+    const all = queuingState.signups || [];
+    const waiting = all.filter(s=>!s.busy);
+    const playing = all.filter(s=>s.busy);
+    const rowHtml = (s, i, removable)=>{
+      const skill = s.skill || 'Not specified';
+      const color = SKILL_COLORS[skill] || 'rgba(245,241,228,0.5)';
+      const removeBtn = removable ? `<button class="btn small secondary queuing-remove-btn" data-name="${s.name}">✕ Remove</button>` : `<span class="court-tag">🏸 On court</span>`;
+      return `
+        <div class="win-row">
+          <span class="pname-label"><span class="rank-badge">${i+1}</span> ${s.name} <span class="challenge-icon" style="color:${color}; border:1px solid ${color}; background:transparent;">${skill}</span></span>
+          ${removeBtn}
+        </div>
+      `;
+    };
+    let html = '';
+    if(waiting.length === 0 && playing.length === 0){
+      html = `<div style="padding:14px 0; font-size:13px; opacity:0.6;">No one's signed up yet — be the first!</div>`;
+    } else {
+      if(waiting.length > 0){
+        html += `<div style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; opacity:0.6; margin:6px 0;">Waiting (${waiting.length})</div>`;
+        html += waiting.map((s,i)=>rowHtml(s,i,true)).join('');
+      } else {
+        html += `<div style="padding:10px 0; font-size:13px; opacity:0.6;">Nobody waiting right now.</div>`;
+      }
+      if(playing.length > 0){
+        html += `<div style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; opacity:0.6; margin:14px 0 6px;">Currently Playing (${playing.length})</div>`;
+        html += playing.map((s,i)=>rowHtml(s,i,false)).join('');
+      }
+    }
+    listEl.innerHTML = html;
+    listEl.querySelectorAll('.queuing-remove-btn').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        const name = btn.getAttribute('data-name');
+        showConfirmDialog(`Remove ${name} from the queue?`, async ()=>{
+          queuingState.signups = queuingState.signups.filter(s=>s.name!==name);
+          renderQueuing();
+          await saveQueuingState();
+        });
+      });
+    });
+  }
+  renderQueueMatchups();
+  renderQueueWins();
+}
+
+document.getElementById('queuingDateInput').addEventListener('change', async (e)=>{
+  queuingState.date = e.target.value;
+  await saveQueuingState();
+});
+document.getElementById('queuingSignupBtn').addEventListener('click', async ()=>{
+  const input = document.getElementById('queuingNameInput');
+  const skillSelect = document.getElementById('queuingSkillSelect');
+  const name = input.value.trim();
+  if(!name){ alert('Enter your name first.'); return; }
+  queuingState.signups.push({ name, skill: skillSelect.value, time: Date.now(), busy: false });
+  input.value = '';
+  renderQueuing();
+  await saveQueuingState();
+});
+document.getElementById('queuingNameInput').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter') document.getElementById('queuingSignupBtn').click();
+});
+
+let queuingEventSource = null;
+function startQueuingSync(){
+  if(queuingEventSource) return;
+  try{
+    queuingEventSource = new EventSource(QUEUING_DB_ENDPOINT);
+    queuingEventSource.addEventListener('put', (e)=>{
+      try{
+        const payload = JSON.parse(e.data);
+        if(payload.path !== '/') return;
+        const remoteStr = payload.data ? JSON.stringify(payload.data) : null;
+        if(remoteStr && remoteStr === queuingLastWritten) return;
+        if(payload.data){
+          queuingState = payload.data;
+          if(!queuingState.date) queuingState.date = todayISO();
+          if(!queuingState.signups) queuingState.signups = [];
+          if(!queuingState.matchups) queuingState.matchups = [];
+          renderQueuing();
+        }
+      }catch(err){ console.error('queuing realtime parse error', err); }
+    });
+  }catch(e){ console.error('could not start queuing sync', e); }
+}
+
+function showWelcome(){
+  document.getElementById('welcomeScreen').style.display = 'flex';
+  document.getElementById('roleScreen').style.display = 'none';
+  document.getElementById('appContent').style.display = 'none';
+  document.getElementById('queuingScreen').style.display = 'none';
+  window.scrollTo(0,0);
+}
+function showRoleScreen(){
+  document.getElementById('welcomeScreen').style.display = 'none';
+  document.getElementById('roleScreen').style.display = 'flex';
+  document.getElementById('appContent').style.display = 'none';
+  document.getElementById('queuingScreen').style.display = 'none';
+  document.getElementById('roleChoiceStep').style.display = '';
+  document.getElementById('roleAdminStep').style.display = 'none';
+  document.getElementById('roleCaptainPasscodeStep').style.display = 'none';
+  document.getElementById('roleTeamStep').style.display = 'none';
+  document.getElementById('roleTeamRosterStep').style.display = 'none';
+  document.getElementById('roleWaitingStep').style.display = 'none';
+  window.scrollTo(0,0);
+}
+function showTournamentApp(){
+  document.getElementById('welcomeScreen').style.display = 'none';
+  document.getElementById('roleScreen').style.display = 'none';
+  document.getElementById('appContent').style.display = '';
+  document.getElementById('queuingScreen').style.display = 'none';
+  window.scrollTo(0,0);
+}
+function showQueuing(){
+  document.getElementById('welcomeScreen').style.display = 'none';
+  document.getElementById('roleScreen').style.display = 'none';
+  document.getElementById('appContent').style.display = 'none';
+  document.getElementById('queuingScreen').style.display = 'flex';
+  window.scrollTo(0,0);
+}
+document.getElementById('welcomeTournamentBtn').addEventListener('click', showRoleScreen);
+document.getElementById('welcomeQueuingBtn').addEventListener('click', showQueuing);
+document.getElementById('welcomeBackBtn').addEventListener('click', showWelcome);
+document.getElementById('roleBackBtn').addEventListener('click', showWelcome);
+document.getElementById('queuingBackBtn').addEventListener('click', showWelcome);
+
+/* ---------------- role login screen ---------------- */
+document.getElementById('roleSkipBtn').addEventListener('click', ()=>{
+  isAdmin = false;
+  isCaptain = false;
+  myTeamKey = null;
+  saveSessionRole();
+  showTournamentApp();
+  renderAdminBar();
+  renderTeamIdentityBar();
+});
+
+document.getElementById('roleAdminBtn').addEventListener('click', ()=>{
+  document.getElementById('roleChoiceStep').style.display = 'none';
+  document.getElementById('roleAdminStep').style.display = '';
+  document.getElementById('roleAdminError').style.display = 'none';
+  document.getElementById('roleAdminPasscodeInput').value = '';
+  document.getElementById('roleAdminPasscodeInput').focus();
+});
+document.getElementById('roleAdminBackBtn').addEventListener('click', ()=>{
+  document.getElementById('roleAdminStep').style.display = 'none';
+  document.getElementById('roleChoiceStep').style.display = '';
+});
+function submitRoleAdminLogin(){
+  const entered = document.getElementById('roleAdminPasscodeInput').value.trim();
+  const expected = (state && state.adminPasscode) || 'PINASAYA';
+  if(entered === expected){
+    isAdmin = true;
+    isCaptain = false;
+    myTeamKey = null;
+    saveSessionRole();
+    showTournamentApp();
+    renderAdminBar();
+    renderTeamIdentityBar();
+    if(state) render();
+  } else {
+    document.getElementById('roleAdminError').style.display = '';
+  }
+}
+document.getElementById('roleAdminSubmitBtn').addEventListener('click', submitRoleAdminLogin);
+document.getElementById('roleAdminPasscodeInput').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter') submitRoleAdminLogin();
+});
+
+let roleRosterChosenTeam = null;
+let roleFlowIsCaptain = true;
+function openTeamSelection(captainMode){
+  roleFlowIsCaptain = captainMode;
+  const optsEl = document.getElementById('roleTeamOptions');
+  const teamKeys = (state && state.config) ? Object.keys(state.config) : TEAM_KEYS;
+  optsEl.innerHTML = teamKeys.map(k=>{
+    const label = (state && state.config && state.config[k].name) || (draftConfig[k] && draftConfig[k].name) || `Team ${k}`;
+    const color = TEAM_ACCENT[k] || 'var(--sun-yellow)';
+    return `<button class="btn secondary role-team-opt" data-team="${k}" style="border-color:${color}; color:${color}; text-align:left;">${label}</button>`;
+  }).join('') + `<button class="btn secondary role-team-opt" data-team="" style="text-align:left; opacity:0.7;">No team — just watching</button>`;
+  optsEl.querySelectorAll('.role-team-opt').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const chosenTeam = btn.getAttribute('data-team') || null;
+      myTeamKey = chosenTeam;
+      isCaptain = !!(chosenTeam && roleFlowIsCaptain);
+      isAdmin = false;
+      saveSessionRole();
+      renderAdminBar();
+      renderTeamIdentityBar();
+      if(state) render();
+      if(chosenTeam && !state && roleFlowIsCaptain){
+        // Captain flow: let them edit their team's shared draft roster, unless already submitted
+        roleRosterChosenTeam = chosenTeam;
+        document.getElementById('roleTeamStep').style.display = 'none';
+        if(draftRosterSubmitted[chosenTeam]){
+          document.getElementById('roleWaitingStep').style.display = '';
+          renderWaitingStep();
+        } else {
+          document.getElementById('roleTeamRosterStep').style.display = '';
+          renderTeamRosterStep();
+        }
+      } else if(chosenTeam && !state && !roleFlowIsCaptain){
+        // Player flow: no roster editing — just show the same waiting/status screen
+        roleRosterChosenTeam = chosenTeam;
+        document.getElementById('roleTeamStep').style.display = 'none';
+        document.getElementById('roleWaitingStep').style.display = '';
+        renderWaitingStep();
+      } else {
+        showTournamentApp();
+      }
+    });
+  });
+  document.getElementById('roleChoiceStep').style.display = 'none';
+  document.getElementById('roleTeamStep').style.display = '';
+}
+document.getElementById('roleTeamPlayerBtn').addEventListener('click', ()=>{
+  document.getElementById('roleChoiceStep').style.display = 'none';
+  document.getElementById('roleCaptainError').style.display = 'none';
+  document.getElementById('roleCaptainPasscodeInput').value = '';
+  document.getElementById('roleCaptainPasscodeStep').style.display = '';
+  document.getElementById('roleCaptainPasscodeInput').focus();
+});
+document.getElementById('roleCaptainBackBtn').addEventListener('click', ()=>{
+  document.getElementById('roleCaptainPasscodeStep').style.display = 'none';
+  document.getElementById('roleChoiceStep').style.display = '';
+});
+function submitCaptainPasscode(){
+  const entered = document.getElementById('roleCaptainPasscodeInput').value.trim();
+  const expected = (state && state.captainPasscode) || 'SMASH';
+  if(entered === expected){
+    document.getElementById('roleCaptainPasscodeStep').style.display = 'none';
+    openTeamSelection(true);
+  } else {
+    document.getElementById('roleCaptainError').style.display = '';
+  }
+}
+document.getElementById('roleCaptainSubmitBtn').addEventListener('click', submitCaptainPasscode);
+document.getElementById('roleCaptainPasscodeInput').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter') submitCaptainPasscode();
+});
+document.getElementById('roleSimpleTeamBtn').addEventListener('click', ()=> openTeamSelection(false));
+document.getElementById('roleTeamBackBtn').addEventListener('click', ()=>{
+  document.getElementById('roleTeamStep').style.display = 'none';
+  document.getElementById('roleChoiceStep').style.display = '';
+});
+
+function renderTeamRosterStep(){
+  const fieldsEl = document.getElementById('roleTeamRosterFields');
+  if(!fieldsEl || !roleRosterChosenTeam || document.getElementById('roleTeamRosterStep').style.display === 'none') return;
+  const k = roleRosterChosenTeam;
+  const team = draftConfig[k];
+  if(!team) return;
+  const continueBtn = document.getElementById('roleRosterContinueBtn');
+  if(continueBtn){
+    const canBrowse = !!state;
+    continueBtn.disabled = !canBrowse;
+    continueBtn.textContent = canBrowse ? 'Just Browse' : 'Just Browse (locked until schedule is generated)';
+  }
+  const promptEl = document.getElementById('roleRosterPrompt');
+  if(promptEl) promptEl.textContent = `Editing ${team.name || 'Team '+k}'s roster (most to least skilled):`;
+
+  // avoid rebuilding the DOM (and losing focus/cursor) if this exact team is already rendered here
+  if(fieldsEl.dataset.team !== k){
+    fieldsEl.dataset.team = k;
+    fieldsEl.innerHTML = team.players.map((p, idx)=>`
+      <div class="player-row">
+        <span class="pnum" ${idx===0 ? 'style="color:var(--sun-yellow); font-weight:700;"' : (idx===team.players.length-1 ? 'style="opacity:0.5;"' : '')}>${idx+1}</span>
+        <input type="text" class="role-roster-input" data-idx="${idx}" value="${p.name.replace(/"/g,'&quot;')}"
+          placeholder="${idx===0 ? 'Player 1 name (strongest)' : (idx===team.players.length-1 ? 'Weakest player' : 'Player '+(idx+1)+' name')}">
+      </div>
+    `).join('');
+    fieldsEl.querySelectorAll('.role-roster-input').forEach(input=>{
+      input.addEventListener('input', (e)=>{
+        const idx = parseInt(input.getAttribute('data-idx'), 10);
+        draftConfig[k].players[idx].name = e.target.value;
+        saveDraftRosterDebounced();
+      });
+    });
+  } else {
+    // same team already shown — just refresh values that aren't currently focused, so live edits from others appear
+    fieldsEl.querySelectorAll('.role-roster-input').forEach(input=>{
+      if(document.activeElement === input) return;
+      const idx = parseInt(input.getAttribute('data-idx'), 10);
+      const val = team.players[idx] ? team.players[idx].name : '';
+      if(input.value !== val) input.value = val;
+    });
+  }
+}
+document.getElementById('roleRosterBackBtn').addEventListener('click', ()=>{
+  document.getElementById('roleTeamRosterStep').style.display = 'none';
+  document.getElementById('roleTeamStep').style.display = '';
+});
+function allTeamsSubmitted(){
+  return TEAM_KEYS.every(k => !!draftRosterSubmitted[k]);
+}
+document.getElementById('roleRosterContinueBtn').addEventListener('click', ()=>{
+  if(!state){
+    alert("You can't browse the tournament yet — the match schedule hasn't been generated. You'll be notified with a sound the moment it's ready.");
+    return;
+  }
+  showTournamentApp();
+});
+document.getElementById('roleRosterSubmitBtn').addEventListener('click', async ()=>{
+  const k = roleRosterChosenTeam;
+  if(!k) return;
+  const team = draftConfig[k];
+  const emptyCount = team.players.filter(p=>!p.name.trim()).length;
+  const doSubmit = async ()=>{
+    draftRosterSubmitted[k] = true;
+    const ok = await saveDraftRosterNow();
+    if(!ok){ alert('Could not submit — check your connection and try again.'); return; }
+    document.getElementById('roleTeamRosterStep').style.display = 'none';
+    document.getElementById('roleWaitingStep').style.display = '';
+    renderWaitingStep();
+  };
+  if(emptyCount > 0){
+    showConfirmDialog(`${emptyCount} name${emptyCount===1?'':'s'} still blank — submit anyway?`, doSubmit);
+  } else {
+    doSubmit();
+  }
+});
+document.getElementById('roleWaitingEditBtn').addEventListener('click', ()=>{
+  const k = roleRosterChosenTeam;
+  if(k){ draftRosterSubmitted[k] = false; saveDraftRosterNow(); }
+  document.getElementById('roleWaitingStep').style.display = 'none';
+  document.getElementById('roleTeamRosterStep').style.display = '';
+  renderTeamRosterStep();
+});
+document.getElementById('roleWaitingBrowseBtn').addEventListener('click', ()=>{
+  if(!state){
+    alert("You can't browse the tournament yet — the match schedule hasn't been generated. You'll be notified with a sound the moment it's ready.");
+    return;
+  }
+  showTournamentApp();
+});
+function renderWaitingStep(){
+  if(document.getElementById('roleWaitingStep').style.display === 'none') return;
+  const k = roleRosterChosenTeam;
+  if(!k) return;
+  const titleEl = document.getElementById('roleWaitingTitle');
+  const teamName = (draftConfig[k] && draftConfig[k].name) || `Team ${k}`;
+  if(titleEl) titleEl.textContent = roleFlowIsCaptain ? `${teamName}'s list is final!` : `You're set for ${teamName}!`;
+  const editBtn = document.getElementById('roleWaitingEditBtn');
+  if(editBtn) editBtn.style.display = roleFlowIsCaptain ? '' : 'none';
+  const subEl = document.getElementById('roleWaitingSub');
+  if(subEl){
+    subEl.textContent = allTeamsSubmitted()
+      ? 'All teams have submitted! Waiting for Admin to generate the schedule...'
+      : 'Waiting for other teams to submit their final list...';
+  }
+  const browseBtn = document.getElementById('roleWaitingBrowseBtn');
+  if(browseBtn){
+    const canBrowse = !!state;
+    browseBtn.disabled = !canBrowse;
+    browseBtn.textContent = canBrowse ? 'Browse Tournament' : 'Browse Tournament (locked)';
+  }
+  const listEl = document.getElementById('roleWaitingStatusList');
+  if(listEl){
+    listEl.innerHTML = TEAM_KEYS.map(tk=>{
+      const name = (draftConfig[tk] && draftConfig[tk].name) || `Team ${tk}`;
+      const done = !!draftRosterSubmitted[tk];
+      return `<div class="win-row">
+        <span class="pname-label" style="color:${TEAM_ACCENT[tk]}">${name}</span>
+        <span class="court-tag" style="${done ? 'color:var(--green-win);' : ''}">${done ? '✅ Submitted' : '⏳ Waiting...'}</span>
+      </div>`;
+    }).join('');
+  }
+}
+
+loadQueuingState();
+startQueuingSync();
+loadDraftRoster();
+startDraftRosterSync();
+loadPendingRoster();
+startPendingRosterSync();
+
+if(hadSessionRole){
+  // Admin/Captain/team role was already established earlier this browser tab session (persisted in
+  // sessionStorage), so skip straight past the welcome/role screens instead of asking again.
+  showTournamentApp();
+  renderTeamIdentityBar();
+}
+</script>
+</body>
+</html>
